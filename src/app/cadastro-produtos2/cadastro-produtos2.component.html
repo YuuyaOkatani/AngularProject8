@@ -18,8 +18,12 @@
                 <input class="input1" id="quantidade" placeholder="Quantidade" type="number" for="quantidade" formControlName="quantidade" ngbPopover="Coloque a quantidade do produto! " triggers="mouseenter:mouseleave">
                 <div class="d-grid gap-2" *ngIf="Array2.length == 5">
                     <button class="btn btn-primary" type="button" id="button" (click)="botao()">Salvar</button>
+                    
                 
                 </div> 
+                <div class="d-grid gap-2" *ngIf="togglar3">
+                    <button type="button" class="btn btn-outline-success button3">Ver a lista de produtos cadastrados</button>
+                </div>
                 
  
                 
@@ -28,7 +32,7 @@
                 <div id="component3" [ngClass]="{'transition' : togglar , 'transition2': !togglar}"> 
                     <div style="margin-bottom: 190px;">
                         <i class="bi bi-x-circle button2" (click)="fechar()" ></i>
-                        <div class="alert alert-success label" role="alert" >
+                        <div class="alert alert-success label" role="alert" *ngIf="togglar2" >
                             Formulário Salvo! 🥳
                             <div>
                                 ID do produto: {{Array2[0]}}
@@ -50,7 +54,11 @@
                             <div>
                                 Quantidade: {{Array2[4]}}
                             </div>
-                          </div>
+                        </div>
+
+                        <div class="alert alert-danger" role="alert" *ngIf="!togglar2">
+                            O produto já existe 😁
+                        </div>
                     </div>
                
                 </div>
