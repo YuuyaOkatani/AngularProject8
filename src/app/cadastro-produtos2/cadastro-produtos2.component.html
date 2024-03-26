@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../cadastro-produtos2/cadastro-produtos2.component.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="component1">
+        <div class="component2">
+           <form [formGroup]="Forms"> 
+            <div>
+                <input class="input1" id="ID" placeholder="ID" type="number" for="ID" formControlName="ID"   ngbPopover="Coloque o ID do produto! " triggers="mouseenter:mouseleave" >
+                <input class="input1" id="nome" placeholder="Nome" type="string" for="nome" formControlName="nome" ngbPopover="Coloque o nome do produto! " triggers="mouseenter:mouseleave" >
+                <textarea class="input2" id="descricao" placeholder="Descrição" for="descricao" formControlName="descricao" ngbPopover="Coloque a descrição do produto! " triggers="mouseenter:mouseleave"></textarea>
+                <input class="input1" id="preco" placeholder="preço" type="number" for="preco" formControlName="preco" ngbPopover="Coloque o preço do produto! " triggers="mouseenter:mouseleave">
+                <input class="input1" id="quantidade" placeholder="Quantidade" type="number" for="quantidade" formControlName="quantidade" ngbPopover="Coloque a quantidade do produto! " triggers="mouseenter:mouseleave">
+                <div class="d-grid gap-2" *ngIf="Array2.length == 5">
+                    <button class="btn btn-primary" type="button" id="button" (click)="botao()">Salvar</button>
+                
+                </div> 
+                
+ 
+                
+                  
+
+                <div id="component3" [ngClass]="{'transition' : togglar , 'transition2': !togglar}"> 
+                    <div style="margin-bottom: 190px;">
+                        <i class="bi bi-x-circle button2" (click)="fechar()" ></i>
+                        <div class="alert alert-success label" role="alert" >
+                            Formulário Salvo! 🥳
+                            <div>
+                                ID do produto: {{Array2[0]}}
+                               
+                            </div>
+
+                            <div>
+                                Nome do produto: {{Array2[1]}}
+                            
+                            </div>
+                            <div>
+                                Descrição: {{Array2[2]}}
+                          
+                            </div>
+                            <div>
+                                Preço do produto por unidade: {{Array2[3]}}
+                           
+                            </div>
+                            <div>
+                                Quantidade: {{Array2[4]}}
+                            </div>
+                          </div>
+                    </div>
+               
+                </div>
+                
+            
+            </div>
+        
+        
+        </form>
+            
+        </div>
+    </div>
+    
+</body>
+</html>
