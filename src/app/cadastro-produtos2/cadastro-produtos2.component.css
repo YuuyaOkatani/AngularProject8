@@ -37,6 +37,82 @@
     
 }
 
+#component4{
+    background-color: rgb(48, 47, 47);
+    box-shadow: 0 4px 12px   black;
+    height: 600px;
+    width: 600px;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    position: fixed;
+    top: 100%;
+    
+}
+
+#component5{
+    overflow-y: auto;
+    border: 2px solid black;  
+    border-radius: 10px;
+    background-color: aliceblue; 
+    position: fixed;
+    height: 300px;
+    width: 580px;
+    margin-top: 200px;
+
+  
+}
+
+
+
+#component6{
+   
+   
+    display: flex;
+    margin-top: 10px;
+    margin-left: 10px;
+ 
+
+    background-color: rgb(0, 132, 255);
+    border-radius: 10px;
+    width: 540px;
+    font-size: 25px;
+ 
+ 
+}
+
+#component7{
+    background-color: rgb(48, 47, 47);
+    box-shadow: 0 4px 12px   black;
+    height: 500px;
+    width: 700px;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    position: fixed;
+    right: 645px;
+    top: 100%;
+
+}
+
+#component8{ 
+    background-color: rgb(48, 47, 47);
+    box-shadow: 0 4px 12px   black;
+    height: 700px;
+    width: 100px;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    position: fixed;
+    top: 100%;
+
+}
+
+
+
 
 
 .transition{
@@ -83,7 +159,48 @@
     font-size: 30px;
     height: 30px;
     width: 30px;
+    
    
+}
+
+.button4{
+
+    background-color: red;
+    margin-left: 550px;
+    margin-bottom: 200px;
+    display: flex;
+    border-radius: 100%;
+    font-size: 30px;
+    height: 30px;
+    width: 30px;
+
+}
+
+#button5{
+    margin-left: 500px;
+     margin-top: 2.5px; 
+     height: 30px; 
+     width: 30px;
+    position: fixed; 
+    border-radius: 10px;
+    background-color: red;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+
+}
+#button6{
+    margin-left: 465px;
+     margin-top: 2.5px; 
+     height: 30px; 
+     width: 30px;
+    position: fixed; 
+    border-radius: 10px;
+    background-color: rgb(0, 255, 0);
+    justify-content: center;
+    align-items: center;
+    display: flex;
+
 }
 
 .button3{
@@ -97,6 +214,13 @@
     width: 580px;
     height: 200px;
     
+}
+
+.label2{
+    width: 580px;
+    height: 60px;
+    margin-bottom: 200px;
+ 
 }
 
 .popupColor{

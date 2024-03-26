@@ -16,6 +16,10 @@ export class CadastroProdutos2Component {
   togglar = false
   togglar2 = false
   togglar3 = false
+  togglar4 = false
+  togglar5 = false
+  togglar6 = false
+  response = ''
 
   /*
 
@@ -121,10 +125,39 @@ export class CadastroProdutos2Component {
   }
 
   fechar(){
-    this.togglar = !this.togglar
+    this.togglar = false
     this.togglar3 = true
+    this.togglar4 = false
     
   }
+
+  consultarLista(){
+    
+    this.togglar4 = true
+
+    for(let i = 0; i < this.Array.length ; i++){
+
+    }
+  }
+
+  editarItem(){
+    this.togglar5 = !this.togglar5
+    console.log('jooj')
+
+  }
+
+  salvarItem(){
+    this.togglar5 = true
+
+
+  }
+
+  apagarItem(){
+    this.togglar6 = true
+    
+  }
+
+  
 
 
 }

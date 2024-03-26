@@ -17,15 +17,53 @@
                 <input class="input1" id="preco" placeholder="preço" type="number" for="preco" formControlName="preco" ngbPopover="Coloque o preço do produto! " triggers="mouseenter:mouseleave">
                 <input class="input1" id="quantidade" placeholder="Quantidade" type="number" for="quantidade" formControlName="quantidade" ngbPopover="Coloque a quantidade do produto! " triggers="mouseenter:mouseleave">
                 <div class="d-grid gap-2" *ngIf="Array2.length == 5">
-                    <button class="btn btn-primary" type="button" id="button" (click)="botao()">Salvar</button>
+                    <button class="btn btn-primary" type="button" id="button" (click)="botao()">Salvar produto 💾</button>
                     
                 
                 </div> 
                 <div class="d-grid gap-2" *ngIf="togglar3">
-                    <button type="button" class="btn btn-outline-success button3">Ver a lista de produtos cadastrados</button>
+                    <button type="button" class="btn btn-outline-success button3" (click)="consultarLista()">Ver a lista de produtos cadastrados</button>
                 </div>
                 
- 
+                
+                
+                <div id="component4"  [ngClass]="{'transition' : togglar4 , 'transition2': !togglar4}">
+                    <div style="display: flex; position: fixed; margin-bottom: 350px;">
+                        <i class="bi bi-x-circle button4" (click)="fechar()" ></i>
+                        
+                    </div>
+
+                    
+                    <!--<i class="bi bi-x-circle button4" (click)="fechar()" ></i>-->
+                    <div class="alert alert-info label2" role="alert">
+                        Lista de cadastrados 📜💾
+                      </div>
+
+
+                       
+                
+                
+                    <div id="component5">
+                        <div>
+                            <div id="component6" *ngFor="let item of Array">
+                                Nome: {{item.nome}}
+                                <button id="button6" (click)="editarItem()">
+                                    <i class="bi bi-pencil-fill"></i>
+                                </button>
+                                <button id="button5" (click)="apagarItem()">
+                                    <i class="bi bi-trash-fill"></i>
+                                </button>
+                            
+                            </div>  
+                        </div>
+
+                    </div>
+                
+                </div>
+
+                <div id="component7" [ngClass]="{'transition': togglar5, 'transition2': !togglar5}">
+
+                </div>
                 
                   
 
