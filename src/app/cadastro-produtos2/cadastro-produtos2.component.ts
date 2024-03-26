@@ -108,7 +108,7 @@ export class CadastroProdutos2Component {
       this.Array.push(this.Forms.value)
       this.togglar2 = true
     }
-    this.togglar = !this.togglar
+    this.togglar = !this.togglar // popup aviso de adicionar false -> true
     
 
     
@@ -125,24 +125,24 @@ export class CadastroProdutos2Component {
   }
 
   fechar(){
-    this.togglar = false
-    this.togglar3 = true
-    this.togglar4 = false
+    this.togglar = false // popup aviso de adicionar fechado
+    this.togglar3 = true // ativar botão de consulta 
+    this.togglar4 = false // popup consultar lista fechado
+    this.togglar5 = false // popup editar fechado
     
   }
 
   consultarLista(){
     
-    this.togglar4 = true
+    this.togglar4 = !this.togglar4 // popup abrir consultar lista  false --> true
 
-    for(let i = 0; i < this.Array.length ; i++){
-
-    }
+    
   }
 
   editarItem(){
-    this.togglar5 = !this.togglar5
-    console.log('jooj')
+    this.togglar5 = !this.togglar5 // popup editar false --> true
+    this.togglar4 = !this.togglar4 // popup consultar lista false --> true 
+
 
   }
 

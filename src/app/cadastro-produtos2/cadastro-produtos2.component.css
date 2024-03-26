@@ -92,7 +92,8 @@
     align-items: center;
     display: flex;
     position: fixed;
-    right: 645px;
+    left: 590px;
+    margin-top: 50px;
     top: 100%;
 
 }
@@ -163,6 +164,14 @@
    
 }
 
+.button3{
+    width: 400px;
+    margin-left: 95px;
+    margin-top: 10px;
+    background-color: rgb(111, 255, 0);
+
+}
+
 .button4{
 
     background-color: red;
@@ -203,13 +212,22 @@
 
 }
 
-.button3{
-    width: 400px;
-    margin-left: 95px;
-    margin-top: 10px;
-    background-color: rgb(111, 255, 0);
+.button7{
+
+    background-color: red;
+    margin-left: 550px;
+    margin-bottom: 200px;
+    display: flex;
+    border-radius: 100%;
+    font-size: 30px;
+    height: 30px;
+    width: 30px;
 
 }
+
+
+
+
 .label{
     width: 580px;
     height: 200px;
