@@ -102,13 +102,14 @@
 #component8{ 
     background-color: rgb(48, 47, 47);
     box-shadow: 0 4px 12px   black;
-    height: 700px;
-    width: 100px;
+    height: 200px;
+    width: 700px;
     border-radius: 10px;
     justify-content: center;
     align-items: center;
     display: flex;
     position: fixed;
+    margin-top: 200px;
     top: 100%;
 
 }
@@ -118,11 +119,38 @@
 
 
 .transition{
-    transition: 1s ease;
+    transition: 0.7s ease;
     transform: translateY(-780px);
 
 }
 .transition2{
+    transition: 1s ease;
+    transform: translateY(1000px);
+
+
+    
+}
+
+
+.transition1_2{
+    transition: 1s ease;
+    transform: translateY(700px);
+
+
+}
+.transition2_2{
+    transition: 1s ease;
+    transform: translateY(1000px);
+
+}
+
+.transition1_3{
+    transition: 1s ease;
+    transform: translateY(0px);
+
+
+}
+.transition2_3{
     transition: 1s ease;
     transform: translateY(1000px);
 
@@ -143,10 +171,44 @@
     margin-top: 10px;  
 }
 
+.input3{
+    height: 25px;
+    width: auto;
+    border-radius: 10px;
+    margin-left: 95px;
+    margin-top: 10px;  
+}
+
+.input4{
+    height: 25px;
+    width: auto;
+    border-radius: 10px;
+    margin-left: 95px;
+    margin-top: 10px;  
+}
+.input5{
+    height: 25px;
+    width: auto;
+    border-radius: 10px;
+    margin-left: 95px;
+    margin-top: 10px;  
+}
+
+.input6{
+    height: 25px;
+    width: auto;
+    border-radius: 10px;
+    margin-left: 95px;
+    margin-top: 10px;  
+}
+
+
+
 #button{
     width: 400px;
     margin-left: 95px;
     margin-top: 10px;
+    position: fixed;
 }
 
 .button2{
@@ -168,7 +230,7 @@
 .button3{
     width: 400px;
     margin-left: 95px;
-    margin-top: 10px;
+    margin-top: 60px;
     background-color: rgb(111, 255, 0);
 
 }
@@ -226,6 +288,19 @@
 
 }
 
+.button8{
+
+    background-color: red;
+    margin-left: 555px;
+    margin-bottom: 20px;
+    display: flex;
+    border-radius: 100%;
+    font-size: 30px;
+    height: 30px;
+    width: 30px;
+
+}
+
 
 
 
@@ -248,6 +323,24 @@
     
  
 }
+
+.label4{
+    width: 580px;
+    position: fixed;
+    
+ 
+}
+
+
+.label5{
+    display: flex;
+    width: 580px;
+    position: fixed;
+    top: 100%;
+    margin-top: 1000px;    
+ 
+}
+
 
 .popupColor{
     background-color: green;

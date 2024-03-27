@@ -13,6 +13,10 @@ export class CadastroProdutos2Component {
   Forms : FormGroup; 
   Array: Array[] = []; 
   Array2:string[] = [];
+  novoNome: string = ''
+  novaDescricao: string =''
+  novoPreco: any = ''
+  novaQuantidade: any = ''; 
   togglar = false
   togglar2 = false
   togglar3 = false
@@ -20,7 +24,17 @@ export class CadastroProdutos2Component {
   togglar5 = false
   togglar6 = false
   togglar7 = true
-  produto: any = ''; 
+  togglar8 = false 
+  togglar9 = false 
+  togglar10 = false
+  produto: any;
+  produto2:any; 
+  apagar_sucesso =' foi apagado com sucesso! '
+  editar_sucesso =' foi editado com sucesso! '
+  adicionar_sucesso = ' foi adicionado com sucesso! '
+  produto_existe = ' já está cadastrado 😁! '
+  texto = ''
+
 
   /*
 
@@ -102,14 +116,29 @@ export class CadastroProdutos2Component {
     console.log(result1)
     if(result1 == true || result2 == true ){
       console.log('sim, ela existe')
+      this.togglar9 = true
       this.togglar2 = false
+      
+      setTimeout(() => {
+        this.togglar9 = false
+        
+        
+      }, 3000);
     }
     else{
       console.log('Ela não existe')
       this.Array.push(this.Forms.value)
+      this.texto = this.adicionar_sucesso
+      
+      this.togglar9 = true
       this.togglar2 = true
+      setTimeout(() => {
+        this.togglar9 = false
+        
+      }, 3000);
     }
     this.togglar = !this.togglar // popup aviso de adicionar false -> true
+    
     
 
     
@@ -127,9 +156,17 @@ export class CadastroProdutos2Component {
 
   fechar(value: boolean){
     this.togglar = false // popup aviso de adicionar fechado
-    this.togglar3 = true // ativar botão de consulta 
+   
     this.togglar4 = false // popup consultar lista fechado
     this.togglar5 = false // popup editar fechado
+    if(this.Array.length > 0){
+      this.togglar3 = true // ativar botão de consulta 
+
+    }
+    else{
+      this.togglar3 = false
+
+    }
     if(value == true ){
       this.togglar4 = true
       this.togglar7 = true
@@ -137,6 +174,7 @@ export class CadastroProdutos2Component {
 
 
     }
+    this.togglar8 = false
     
   }
 
@@ -147,13 +185,16 @@ export class CadastroProdutos2Component {
     
   }
 
-  editarItem(item: any){
+  editarItem(item:any){
     this.togglar5 = true
     this.togglar4 = false
     this.togglar7 = false
 
 
-    this.produto = item
+     
+    console.log(item)
+    this.produto = item 
+
 
     
     
@@ -161,15 +202,84 @@ export class CadastroProdutos2Component {
 
   }
 
-  salvarItem(){
-    this.togglar5 = true
+  salvarItem(item: any){
+ 
+    if(this.novoNome!=='' ){
+      this.Array.forEach(element => {
+        if(element.ID === item.ID){
+          element.nome = this.novoNome 
+        }    
+    })}
+        if(this.novaDescricao !=='' ){
+      this.Array.forEach(element => {
+        if(element.ID === item.ID){
+          element.descricao = this.novaDescricao
+        }    
+    })}
+    if(this.novoPreco!=='' ){
+      this.Array.forEach(element => {
+        if(element.ID === item.ID){
+          element.preco = this.novoPreco
+        }    
+    })}
+    if(this.novaQuantidade!=='' ){
+      this.Array.forEach(element => {
+        if(element.ID === item.ID){
+          element.quantidade = this.novaQuantidade
+        }    
+    })}
+
+
+
+    
+    console.log(this.Array)
+    console.log(this.produto)
+    this.novoNome =''
+    this.novaDescricao =''
+    this.novoPreco =''
+    this.novaQuantidade = ''
+    this.togglar9 = true
+    this.texto = this.editar_sucesso
+    setTimeout(() => {
+      this.togglar9 = false
+      
+      
+    }, 3000);
+
+    
 
 
   }
 
-  apagarItem(){
-    this.togglar6 = true
+  apagarItem(item: any){
+    this.togglar8 = true
+    this.togglar4 = false
+    this.produto2 = item
+
+
+
     
+  }
+  deletarItem(item: any){
+    console.log(this.Array)
+    let numIndice = this.Array.indexOf(item.ID)
+    console.log(numIndice)
+    this.Array.splice(numIndice, 1 )
+    console.log(this.Array)
+    this.togglar8 = false
+    this.togglar4 = true
+    this.togglar9 = true
+
+    this.texto = this.apagar_sucesso
+  
+
+    setTimeout(() => {
+      this.togglar9 = false
+      
+      
+    }, 3000);
+    
+
   }
 
   
