@@ -9,7 +9,7 @@
 <body>
     <div class="component1">
         <div class="component2">
-           <form [formGroup]="Forms"> 
+           <form [formGroup]="Forms"  > 
             <div>
                 <input class="input1" id="ID" placeholder="ID" type="number" for="ID" formControlName="ID"   ngbPopover="Coloque o ID do produto! " triggers="mouseenter:mouseleave" >
                 <input class="input1" id="nome" placeholder="Nome" type="string" for="nome" formControlName="nome" ngbPopover="Coloque o nome do produto! " triggers="mouseenter:mouseleave" >
@@ -29,7 +29,7 @@
                 
                 <div id="component4"  [ngClass]="{'transition' : togglar4 , 'transition2': !togglar4}">
                     <div style="display: flex; position: fixed; margin-bottom: 350px;">
-                        <i class="bi bi-x-circle button4" (click)="fechar()" ></i>
+                        <i class="bi bi-x-circle button4" (click)="fechar(false)" ></i>
                         
                     </div>
 
@@ -41,13 +41,13 @@
 
 
                        
-                
+                    
                 
                     <div id="component5">
                         <div>
                             <div id="component6" *ngFor="let item of Array">
                                 Nome: {{item.nome}}
-                                <button id="button6" (click)="editarItem()">
+                                <button id="button6" (click)="editarItem(item)">
                                     <i class="bi bi-pencil-fill"></i>
                                 </button>
                                 <button id="button5" (click)="apagarItem()">
@@ -62,9 +62,29 @@
                 </div>
 
                 <div id="component7" [ngClass]="{'transition': togglar5, 'transition2': !togglar5}">
-                    <div style="display: flex; position: fixed; margin-bottom: 350px;">
-                        <i class="bi bi-x-circle button7" (click)="fechar()" ></i>
+                    <div style="display: flex; position: fixed; margin-bottom: 40px;">
+                        <i class="bi bi-x-circle button7" (click)="fechar(true)" ></i>
                         
+                    </div>
+                    <div>
+                        <div class="alert alert-info label3" role="alert">
+                            <div>
+                                ID do produto: {{produto.ID}}
+                            </div>
+                            <div>
+                                Nome do produto: {{produto.nome}}
+                            </div>
+                            <div>
+                                Descrição do produto: {{produto.descricao}}
+                            </div>
+                            <div>
+                                Preço do produto: {{produto.preco}}
+                            </div>
+                            <div>
+                                Quantidade do produto: {{produto.quantidade}}
+                            </div>
+                          </div>
+
                     </div>
                     
 
@@ -74,7 +94,7 @@
 
                 <div id="component3" [ngClass]="{'transition' : togglar , 'transition2': !togglar}"> 
                     <div style="margin-bottom: 190px;">
-                        <i class="bi bi-x-circle button2" (click)="fechar()" ></i>
+                        <i class="bi bi-x-circle button2" (click)="fechar(false)" ></i>
                         <div class="alert alert-success label" role="alert" *ngIf="togglar2" >
                             Formulário Salvo! 🥳
                             <div>

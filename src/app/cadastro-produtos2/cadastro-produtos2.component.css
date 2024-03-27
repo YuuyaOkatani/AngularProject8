@@ -85,15 +85,16 @@
 #component7{
     background-color: rgb(48, 47, 47);
     box-shadow: 0 4px 12px   black;
-    height: 500px;
-    width: 700px;
+    height: 400px;
+    width: 600px;
     border-radius: 10px;
     justify-content: center;
     align-items: center;
     display: flex;
     position: fixed;
-    left: 590px;
-    margin-top: 50px;
+    margin-top: 120px;
+
+
     top: 100%;
 
 }
@@ -216,7 +217,7 @@
 
     background-color: red;
     margin-left: 550px;
-    margin-bottom: 200px;
+    margin-bottom: 300px;
     display: flex;
     border-radius: 100%;
     font-size: 30px;
@@ -238,6 +239,13 @@
     width: 580px;
     height: 60px;
     margin-bottom: 200px;
+ 
+}
+
+.label3{
+    width: 580px;
+    height: auto;
+    
  
 }
 

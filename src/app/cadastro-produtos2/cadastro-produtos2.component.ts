@@ -19,7 +19,8 @@ export class CadastroProdutos2Component {
   togglar4 = false
   togglar5 = false
   togglar6 = false
-  response = ''
+  togglar7 = true
+  produto: any = ''; 
 
   /*
 
@@ -124,11 +125,18 @@ export class CadastroProdutos2Component {
 
   }
 
-  fechar(){
+  fechar(value: boolean){
     this.togglar = false // popup aviso de adicionar fechado
     this.togglar3 = true // ativar botão de consulta 
     this.togglar4 = false // popup consultar lista fechado
     this.togglar5 = false // popup editar fechado
+    if(value == true ){
+      this.togglar4 = true
+      this.togglar7 = true
+
+
+
+    }
     
   }
 
@@ -139,9 +147,16 @@ export class CadastroProdutos2Component {
     
   }
 
-  editarItem(){
-    this.togglar5 = !this.togglar5 // popup editar false --> true
-    this.togglar4 = !this.togglar4 // popup consultar lista false --> true 
+  editarItem(item: any){
+    this.togglar5 = true
+    this.togglar4 = false
+    this.togglar7 = false
+
+
+    this.produto = item
+
+    
+    
 
 
   }
