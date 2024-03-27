@@ -32,7 +32,7 @@ export class CadastroProdutos2Component {
   apagar_sucesso =' foi apagado com sucesso! '
   editar_sucesso =' foi editado com sucesso! '
   adicionar_sucesso = ' foi adicionado com sucesso! '
-  produto_existe = ' já está cadastrado 😁! '
+  produto_existe = ' já foi cadastrado anteriormente 😁! '
   texto = ''
 
 
@@ -117,6 +117,7 @@ export class CadastroProdutos2Component {
     if(result1 == true || result2 == true ){
       console.log('sim, ela existe')
       this.togglar9 = true
+      this.texto = this.produto_existe
       this.togglar2 = false
       
       setTimeout(() => {
@@ -129,7 +130,7 @@ export class CadastroProdutos2Component {
       console.log('Ela não existe')
       this.Array.push(this.Forms.value)
       this.texto = this.adicionar_sucesso
-      
+      this.togglar = !this.togglar // popup aviso de adicionar false -> true
       this.togglar9 = true
       this.togglar2 = true
       setTimeout(() => {
@@ -137,7 +138,7 @@ export class CadastroProdutos2Component {
         
       }, 3000);
     }
-    this.togglar = !this.togglar // popup aviso de adicionar false -> true
+    
     
     
 
@@ -174,7 +175,16 @@ export class CadastroProdutos2Component {
 
 
     }
-    this.togglar8 = false
+    if(this.togglar8 == true){
+      this.togglar8 = false
+      this.togglar4 = true
+
+    }
+    else{
+      this.togglar8 = false
+    }
+
+    
     
   }
 

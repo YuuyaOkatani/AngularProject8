@@ -100,19 +100,18 @@
                             </div>
                         </div>
 
-                        <div class="alert alert-danger" role="alert" *ngIf="!togglar2">
-                            O produto já existe 😁
-                        </div>
+                        
                     </div>
                
                 </div>
 
 
-                <div style="position: fixed;" [ngClass]="{'transition': togglar9 , 'transition2': !togglar9}">
+                <div style="position: fixed;" [ngClass]="{'transition': togglar9  , 'transition2': !togglar9}">
                     <div class="alert alert-success label5" role="alert" >
                         o produto {{texto === adicionar_sucesso ? adicionar_sucesso : 
                                     texto === editar_sucesso ? editar_sucesso :
-                                    texto === apagar_sucesso?  apagar_sucesso : ''}} 
+                                    texto === apagar_sucesso?  apagar_sucesso : 
+                                    texto === produto_existe? produto_existe: ''}} 
                       </div>
                 </div>
                 
