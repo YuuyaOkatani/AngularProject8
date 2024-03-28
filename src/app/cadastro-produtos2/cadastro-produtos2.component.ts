@@ -2,6 +2,27 @@ import { Component, untracked } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Array } from '../array';
 
+const express = require('express');
+
+
+const mongoose = require('mongoose');
+
+const uri = "mongodb+srv://MrFlinck:Dokutastone14@bluemango.eqcdc7d.mongodb.net/?retryWrites=true&w=majority&appName=BlueMango";
+const clientOptions = { serverApi: { version: '1', strict: true, deprecationErrors: true } };
+async function run() {
+  try {
+    // Create a Mongoose client with a MongoClientOptions object to set the Stable API version
+    await mongoose.connect(uri, clientOptions);
+    await mongoose.connection.db.admin().command({ ping: 1 });
+    console.log("Pinged your deployment. You successfully connected to MongoDB!");
+  } finally {
+    // Ensures that the client will close when you finish/error
+    await mongoose.disconnect();
+  }
+}
+run().catch(console.dir);
+
+
 
 @Component({
   selector: 'app-cadastro-produtos2',
@@ -27,12 +48,14 @@ export class CadastroProdutos2Component {
   togglar8 = false 
   togglar9 = false 
   togglar10 = false
+  togglar11= false
   produto: any;
   produto2:any; 
   apagar_sucesso =' foi apagado com sucesso! '
   editar_sucesso =' foi editado com sucesso! '
   adicionar_sucesso = ' foi adicionado com sucesso! '
   produto_existe = ' já foi cadastrado anteriormente 😁! '
+  response = false 
   texto = ''
 
 
@@ -129,10 +152,12 @@ export class CadastroProdutos2Component {
     else{
       console.log('Ela não existe')
       this.Array.push(this.Forms.value)
-      this.texto = this.adicionar_sucesso
+      
       this.togglar = !this.togglar // popup aviso de adicionar false -> true
-      this.togglar9 = true
+      this.texto = this.adicionar_sucesso
+      
       this.togglar2 = true
+      this.togglar9 = true
       setTimeout(() => {
         this.togglar9 = false
         
@@ -214,28 +239,75 @@ export class CadastroProdutos2Component {
 
   salvarItem(item: any){
  
-    if(this.novoNome!=='' ){
+    if(this.novoNome!==''  && this.Array.some(element2 => element2.nome == this.novoNome.trim().toLowerCase()) == false){
       this.Array.forEach(element => {
         if(element.ID === item.ID){
-          element.nome = this.novoNome 
+      
+            element.nome = this.novoNome 
+      
+            this.texto = this.editar_sucesso
+            this.togglar9 = true
+            setTimeout(() => {
+            this.togglar9 = false
+      
+      
+            }, 3000);
+         
+
         }    
     })}
+    else{
+            this.texto = this.produto_existe
+            this.togglar9 = true
+            setTimeout(() => {
+            this.togglar9 = false
+      
+      
+            }, 3000);
+      
+    }
         if(this.novaDescricao !=='' ){
       this.Array.forEach(element => {
         if(element.ID === item.ID){
           element.descricao = this.novaDescricao
+
+          this.texto = this.editar_sucesso
+          this.togglar9 = true
+          setTimeout(() => {
+          this.togglar9 = false
+      
+         
+          }, 3000);
         }    
     })}
     if(this.novoPreco!=='' ){
       this.Array.forEach(element => {
         if(element.ID === item.ID){
           element.preco = this.novoPreco
+          this.texto = ''
+
+          this.texto = this.editar_sucesso
+          this.togglar9 = true
+          setTimeout(() => {
+          this.togglar9 = false
+      
+      
+          }, 3000);
         }    
     })}
     if(this.novaQuantidade!=='' ){
       this.Array.forEach(element => {
         if(element.ID === item.ID){
           element.quantidade = this.novaQuantidade
+
+          this.texto = this.editar_sucesso
+          this.togglar9 = true
+
+          setTimeout(() => {
+          this.togglar9 = false
+      
+      
+          }, 3000);
         }    
     })}
 
@@ -249,12 +321,7 @@ export class CadastroProdutos2Component {
     this.novoPreco =''
     this.novaQuantidade = ''
     this.togglar9 = true
-    this.texto = this.editar_sucesso
-    setTimeout(() => {
-      this.togglar9 = false
-      
-      
-    }, 3000);
+    
 
     
 
