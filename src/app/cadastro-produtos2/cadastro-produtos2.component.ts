@@ -1,41 +1,10 @@
-import { Component, untracked } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Array } from '../array';
-import { Injectable } from '@angular/core';
-import { createClient } from '@supabase/supabase-js';
-import { environment } from '../../environments/environment';
-
-
-@Injectable({
-  providedIn: 'root'
-})
-/*
-
-import { Express } from 'express';
-import { Mongoose } from 'mongoose';
- 
-const express = require('express');
-
-const mongoose = require('mongoose');
-
-const uri = "mongodb+srv://MrFlinck:Dokutastone14@bluemango.eqcdc7d.mongodb.net/?retryWrites=true&w=majority&appName=BlueMango";
-const clientOptions = { serverApi: { version: '1', strict: true, deprecationErrors: true } };
-async function run() {
-  try {
-    // Create a Mongoose client with a MongoClientOptions object to set the Stable API version
-    await mongoose.connect(uri, clientOptions);
-    await mongoose.connection.db.admin().command({ ping: 1 });
-    console.log("Pinged your deployment. You successfully connected to MongoDB!");
-  } finally {
-    // Ensures that the client will close when you finish/error
-    await mongoose.disconnect();
-  }
-}
-run().catch(console.dir);
+import { SupaService } from '../service/supa.service';
 
 
 
-*/
 
 
 @Component({
@@ -43,9 +12,10 @@ run().catch(console.dir);
   templateUrl: './cadastro-produtos2.component.html',
   styleUrl: './cadastro-produtos2.component.css'
 })
-export class CadastroProdutos2Component {
+export class CadastroProdutos2Component implements OnInit {
 
-  private supabase = createClient(environment.supabaseUrl, environment.supabaseKey);
+  
+
 
 
   
@@ -78,18 +48,9 @@ export class CadastroProdutos2Component {
   texto = ''
 
 
-  /*
-
-  Elemento:string[] = []
-  ID: string = ''
-  nome:string = ''
-  descricao:string = '' 
-  preco: string = ''  
-  quantidade: string = ''
-
-
-  
-  */
+  ngOnInit(): void {
+    this.SupaService.inserirDados(this.novoNome, this.novaDescricao, this.novoPreco, this.novaQuantidade); /// TODO: terminar aqui 
+  }
 
 
 
@@ -97,7 +58,10 @@ export class CadastroProdutos2Component {
 
 
 
-  constructor(private formBuilder: FormBuilder){
+
+
+
+  constructor(private formBuilder: FormBuilder, private SupaService: SupaService){
     this.Forms  = formBuilder.group({
       ID:[],
       nome:[],
@@ -122,6 +86,11 @@ export class CadastroProdutos2Component {
     
     console.log(this.Array2)
 
+    
+    
+
+    
+
 
   }
 
@@ -134,24 +103,8 @@ export class CadastroProdutos2Component {
 
 
   botao(){
-    /*
-    this.Array.push(this.Forms.value)
-    console.log(this.Array)
-    
+  
 
-    this.togglar = !this.togglar
-   
-    if(this.Array.length === 0 ){
-      this.Array.push(this.Forms.value)
-    }
-    else{
-      for(let i = 0; i < this.Array.length ; i++ ){
-        this.Array.push(this.Forms.value)
-      }
-      
-
-    }
-    */
     const result1 = this.Array.some(element => element.ID.toString().toLowerCase().trim() == this.Array2[0].toString().toLowerCase().trim()) // some() é muito util e conveniente. Ele filtra as informações.
     const result2 = this.Array.some(element => element.nome.toString().toLowerCase().trim() == this.Array2[1].toString().toLowerCase().trim())
    

@@ -20,7 +20,10 @@ import { NgbAlertModule, NgbModule, NgbPopoverModule } from '@ng-bootstrap/ng-bo
     ReactiveFormsModule, 
     NgbModule, 
     NgbAlertModule, 
-    NgbPopoverModule
+    NgbPopoverModule,
+    
+    
+    
 
     
   ],
