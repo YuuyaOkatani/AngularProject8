@@ -24,6 +24,7 @@
     "bootstrap-icons": "^1.11.3",
     "express": "^4.19.2",
     "mongoose": "^8.2.3",
+    "require": "^2.4.20",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"
@@ -34,6 +35,8 @@
     "@angular/compiler-cli": "^17.3.0",
     "@angular/localize": "^17.3.0",
     "@types/jasmine": "~5.1.0",
+    "@types/node": "^20.11.30",
+    "@types/webpack-env": "^1.18.4",
     "jasmine-core": "~5.1.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
