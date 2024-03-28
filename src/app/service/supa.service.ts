@@ -16,15 +16,11 @@ export class SupaService {
 
   constructor() { }
  
-  async inserirDados(novoNome: any, novaDescricao: any, novoPreco: any, novaQuantidade: any){
+  async inserirDados(){ // TODO: terminar aqui 
     const { data, error } = await this.supabase.from('produtos').insert([
-      {
-        nome: novoNome,
-        descricao: novaDescricao,
-        preco: novoPreco,
-        quantidade: novaQuantidade
-      }
+      { nome: 'Produto 2', descricao: 'Descrição do Produto 2', preco: 15.99, quantidade: 15 }
     ]);
+
     if(error){
       console.log(error)
     }else{

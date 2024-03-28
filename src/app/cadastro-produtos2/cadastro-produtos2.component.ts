@@ -49,7 +49,7 @@ export class CadastroProdutos2Component implements OnInit {
 
 
   ngOnInit(): void {
-    this.SupaService.inserirDados(this.novoNome, this.novaDescricao, this.novoPreco, this.novaQuantidade); /// TODO: terminar aqui 
+    /// TODO: terminar aqui 
   }
 
 
@@ -144,6 +144,7 @@ export class CadastroProdutos2Component implements OnInit {
     
     console.log(this.Array.length)
     console.log(this.Array)
+    this.SupaService.inserirDados(); // TODO: terminar aqui 
 
     
     
