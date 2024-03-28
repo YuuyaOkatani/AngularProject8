@@ -1,6 +1,14 @@
 import { Component, untracked } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Array } from '../array';
+import { Injectable } from '@angular/core';
+import { createClient } from '@supabase/supabase-js';
+import { environment } from '../../environments/environment';
+
+
+@Injectable({
+  providedIn: 'root'
+})
 /*
 
 import { Express } from 'express';
@@ -36,6 +44,11 @@ run().catch(console.dir);
   styleUrl: './cadastro-produtos2.component.css'
 })
 export class CadastroProdutos2Component {
+
+  private supabase = createClient(environment.supabaseUrl, environment.supabaseKey);
+
+
+  
 
   Forms : FormGroup; 
   Array: Array[] = []; 
@@ -77,6 +90,8 @@ export class CadastroProdutos2Component {
 
   
   */
+
+
 
 
 
