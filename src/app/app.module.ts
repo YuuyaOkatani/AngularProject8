@@ -7,6 +7,7 @@ import { CadastroProdutos2Component } from './cadastro-produtos2/cadastro-produt
 import { FormGroup, FormsModule, NgModel, ReactiveFormsModule } from '@angular/forms';
 import { NgClass } from '@angular/common';
 import { NgbAlertModule, NgbModule, NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { NgbAlertModule, NgbModule, NgbPopoverModule } from '@ng-bootstrap/ng-bo
     NgbModule, 
     NgbAlertModule, 
     NgbPopoverModule,
+    HttpClientModule
     
     
     

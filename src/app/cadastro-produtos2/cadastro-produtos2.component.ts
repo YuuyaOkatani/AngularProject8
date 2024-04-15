@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Array } from '../array';
 import { SupaService } from '../service/supa.service';
+import { ProdutosService} from '../service/produtos.service';
 
 
 
@@ -45,11 +46,33 @@ export class CadastroProdutos2Component implements OnInit {
   adicionar_sucesso = ' foi adicionado com sucesso! '
   produto_existe = ' já foi cadastrado anteriormente 😁! '
   response = false 
+  dados: any =  [] ; 
   texto = ''
 
 
-  ngOnInit(): void {
+  ngOnInit(): void { // ngOnInit server pra verificar o subscribe quando o programa for inicializado
     /// TODO: terminar aqui 
+    this.loadProdutos();
+
+    console.log("saas")
+
+
+
+
+
+
+
+
+
+  }
+
+  loadProdutos(){
+
+    this.service.getProdutos().subscribe({
+      next: data => this.dados.push(...data), 
+
+
+    })
   }
 
 
@@ -61,7 +84,7 @@ export class CadastroProdutos2Component implements OnInit {
 
 
 
-  constructor(private formBuilder: FormBuilder, private SupaService: SupaService){
+  constructor(private formBuilder: FormBuilder, private SupaService: SupaService, private service: ProdutosService ){
     this.Forms  = formBuilder.group({
       ID:[],
       nome:[],
@@ -69,10 +92,11 @@ export class CadastroProdutos2Component implements OnInit {
       preco:[], 
       quantidade:[]
     })
-    let novoArray: any[] = []
+    
+    let novoArray: any[] = []; 
 
     
-    this.Forms.valueChanges.subscribe(() => {
+    this.Forms.valueChanges.subscribe(() => { // aqui é ativado quando muda alguma coisa no array (deletado, adicionado ou melhorado) 
       Object.values(this.Forms.value).forEach(item => {
         if(item !== null && item !== undefined && item !== '' ){
           // colocar mais condições aqui 
@@ -83,8 +107,20 @@ export class CadastroProdutos2Component implements OnInit {
       novoArray = []
       
     })
+
+
     
     console.log(this.Array2)
+
+    console.log(this.dados)
+    console.log(typeof this.dados)
+    console.log(typeof this.Array)
+    console.log(typeof this.Array2) // precisa fazer alguma coisa aqui 
+
+    // precisa fazer com que o programa edite, poste e delete um arranjo de dados, e envie ao banco de dados
+    // ou seja, precisa atualizar todo o código daqui
+    // não precisa mudar o html de aparecer o array. Mas precsa verificar se está coerente.
+
 
     
     
@@ -94,9 +130,6 @@ export class CadastroProdutos2Component implements OnInit {
 
   }
 
-
-
-  
 
 
 
@@ -303,7 +336,7 @@ export class CadastroProdutos2Component implements OnInit {
 
   }
 
-  apagarItem(item: any){
+  apagarItem(item: any){ // aqui ativa o popup de apagar
     this.togglar8 = true
     this.togglar4 = false
     this.produto2 = item
@@ -330,6 +363,10 @@ export class CadastroProdutos2Component implements OnInit {
       
       
     }, 3000);
+
+    this.service.deleteProdutos(item.ID).subscribe({
+      next: data => console.log(data)
+    })
     
 
   }

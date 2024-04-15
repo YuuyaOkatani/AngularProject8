@@ -23,7 +23,7 @@
                     
                 
                 </div> 
-                <div class="d-grid gap-2" *ngIf="togglar3" >
+                <div class="d-grid gap-2" *ngIf="dados.length > 0 " >
                     <button type="button" class="btn btn-outline-success button3" (click)="consultarLista()" [disabled]="togglar8">Ver a lista de produtos cadastrados</button>
                 </div>
                 
@@ -47,9 +47,9 @@
                 
                     <div id="component5">
                         <div>
-                            <div id="component6" *ngFor="let item of Array">
+                            <div id="component6" *ngFor="let item of dados"> <!--Modificado aqui para mostrar o array de documento json--> 
                                 ID: {{item.ID}} ||
-                                Nome: {{item.nome}}
+                                Nome: {{item.Nome}}
 
                                 <button id="button6" (click)="editarItem(item)">
                                     <i class="bi bi-pencil-fill"></i>

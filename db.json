@@ -1,0 +1,39 @@
+{
+  "Produtos": [
+    {
+      "ID": 1,
+      "Nome":"jooj",
+      "Descricao": "presunto",
+      "Preco": 1,
+      "Quantidade": 33
+
+    },
+    {
+      "ID": 2,
+      "Nome":"irineu",
+      "Descricao": "suco",
+      "Preco": 1,
+      "Quantidade": 33
+
+    },
+    {
+      "ID": 3,
+      "Nome":"saas",
+      "Descricao": "dorgas",
+      "Preco": 1,
+      "Quantidade": 33
+
+    },
+    {
+      "ID": 4,
+      "Nome":"sasas",
+      "Descricao": "dorsgas",
+      "Preco": 1,
+      "Quantidade": 33
+
+    }
+
+
+  ]
+
+}
