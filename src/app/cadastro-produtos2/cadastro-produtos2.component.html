@@ -11,11 +11,11 @@
         <div class="component2">
            <form [formGroup]="Forms"  > 
             <div>
-                <input class="input1" id="ID" placeholder="ID" type="number" for="ID" formControlName="ID"   ngbPopover="Coloque o ID do produto! " triggers="mouseenter:mouseleave" >
-                <input class="input1" id="nome" placeholder="Nome" type="string" for="nome" formControlName="nome" ngbPopover="Coloque o nome do produto! " triggers="mouseenter:mouseleave" >
-                <textarea class="input2" id="descricao" placeholder="Descrição" for="descricao" formControlName="descricao" ngbPopover="Coloque a descrição do produto! " triggers="mouseenter:mouseleave"></textarea>
-                <input class="input1" id="preco" placeholder="preço" type="number" for="preco" formControlName="preco" ngbPopover="Coloque o preço do produto! " triggers="mouseenter:mouseleave">
-                <input class="input1" id="quantidade" placeholder="Quantidade" type="number" for="quantidade" formControlName="quantidade" ngbPopover="Coloque a quantidade do produto! " triggers="mouseenter:mouseleave">
+                <input class="input1" id="id" placeholder="id" type="number" for="ID" formControlName="ID"   ngbPopover="Coloque o ID do produto! " triggers="mouseenter:mouseleave" >
+                <input class="input1" id="name" placeholder="name" type="string" for="nome" formControlName="nome" ngbPopover="Coloque o nome do produto! " triggers="mouseenter:mouseleave" >
+                <textarea class="input2" id="description" placeholder="description" for="descricao" formControlName="descricao" ngbPopover="Coloque a descrição do produto! " triggers="mouseenter:mouseleave"></textarea>
+                <input class="input1" id="price" placeholder="price" type="number" for="preco" formControlName="preco" ngbPopover="Coloque o preço do produto! " triggers="mouseenter:mouseleave">
+                <input class="input1" id="quantity" placeholder="quantity" type="number" for="quantidade" formControlName="quantidade" ngbPopover="Coloque a quantidade do produto! " triggers="mouseenter:mouseleave">
                 <div class="d-grid gap-2"[ngClass]="{'transition1_3' : Array2.length == 5, 'transition2_3': Array2.length < 5}" style="position: fixed;">
                     <button class="btn btn-primary" type="button" id="button" (click)="botao()"  [disabled]="togglar8">Salvar produto 💾</button>
                     
@@ -48,8 +48,8 @@
                     <div id="component5">
                         <div>
                             <div id="component6" *ngFor="let item of dados"> <!--Modificado aqui para mostrar o array de documento json--> 
-                                ID: {{item.ID}} ||
-                                Nome: {{item.Nome}}
+                                ID: {{item.id}} ||
+                                Nome: {{item.name}}
 
                                 <button id="button6" (click)="editarItem(item)">
                                     <i class="bi bi-pencil-fill"></i>
@@ -108,10 +108,10 @@
 
                 <div style="position: fixed;" [ngClass]="{'transition': togglar9  , 'transition2': !togglar9}">
                     <div class="alert alert-success label5" role="alert" >
-                        o produto {{texto === adicionar_sucesso ? adicionar_sucesso : 
-                                    texto === editar_sucesso ? editar_sucesso :
-                                    texto === apagar_sucesso?  apagar_sucesso : 
-                                    texto === produto_existe? produto_existe: ''}} 
+                        o produto {{texto === add_success ? add_success : 
+                                    texto === edit_success ? edit_success :
+                                    texto === delete_success?  delete_success : 
+                                    texto === product_exist? product_exist: ''}} 
                       </div>
                 </div>
                 
@@ -126,28 +126,28 @@
                 <i class="bi bi-x-circle button7" (click)="fechar(true)" ></i>           
             </div>
             <div>
-                <div class="alert alert-info label3" role="alert" *ngIf="produto">
+                <div class="alert alert-info label3" role="alert" *ngIf="product">
                     <div>
-                        ID do produto: {{produto.ID}}
+                        ID do produto: {{product.id}}
                   
                     </div>
                     <div>
                         Nome do produto:
-                        <input class="input3" [(ngModel)]="novoNome" [placeholder]="produto.nome">
+                        <input class="input3" [(ngModel)]="newName" [placeholder]="product.name">
                     </div>
                     <div>
                         Descrição do produto:
-                        <input class="input4" [(ngModel)]="novaDescricao" [placeholder]="produto.descricao">
+                        <input class="input4" [(ngModel)]="newDescription" [placeholder]="product.description">
                     </div>
                     <div>
                         Preço do produto:
-                        <input class="input5" [(ngModel)]="novoPreco" [placeholder]="produto.preco">
+                        <input class="input5" [(ngModel)]="newPrice" [placeholder]="product.price">
                     </div>
                     <div>
                         Quantidade do produto:
-                        <input class="input6" [(ngModel)]="novaQuantidade" [placeholder]="produto.quantidade">
+                        <input class="input6" [(ngModel)]="newQuantity" [placeholder]="product.quantity">
                     </div>
-                    <button type="button" class="btn btn-outline-success" (click)="salvarItem(produto)">Salvar ✏💾</button>
+                    <button type="button" class="btn btn-outline-success" (click)="salvarItem(product)">Salvar ✏💾</button>
                     
                   
 
@@ -174,7 +174,7 @@
               </div>
 
             <div style="margin-top: 100px;">
-                <button type="button" class="btn btn-outline-danger" (click)="deletarItem(produto2)">Sim, apagar</button>
+                <button type="button" class="btn btn-outline-danger" (click)="deletarItem(product2)">Sim, apagar</button>
             </div>
             
             

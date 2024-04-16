@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Array } from '../array';
+import { Products } from '../Products';
 import { SupaService } from '../service/supa.service';
 import { ProdutosService} from '../service/produtos.service';
 
@@ -21,13 +21,13 @@ export class CadastroProdutos2Component implements OnInit {
 
   
 
-  Forms : FormGroup; 
-  Array: Array[] = []; 
+  Forms : FormGroup; // forms é usado para cirar um documento com variáveis colocados na página html 
+  Products: Products[] = []; 
   Array2:string[] = [];
-  novoNome: string = ''
-  novaDescricao: string =''
-  novoPreco: any = ''
-  novaQuantidade: any = ''; 
+  newName: string = ''
+  newDescription: string =''
+  newPrice: any = ''
+  newQuantity: any = ''; 
   togglar = false
   togglar2 = false
   togglar3 = false
@@ -39,12 +39,12 @@ export class CadastroProdutos2Component implements OnInit {
   togglar9 = false 
   togglar10 = false
   togglar11= false
-  produto: any;
-  produto2:any; 
-  apagar_sucesso =' foi apagado com sucesso! '
-  editar_sucesso =' foi editado com sucesso! '
-  adicionar_sucesso = ' foi adicionado com sucesso! '
-  produto_existe = ' já foi cadastrado anteriormente 😁! '
+  product: any;
+  product2:any; 
+  delete_success =' foi apagado com sucesso! '
+  edit_success =' foi editado com sucesso! '
+  add_success = ' foi adicionado com sucesso! '
+  product_exist = ' já foi cadastrado anteriormente 😁! '
   response = false 
   dados: any =  [] ; 
   texto = ''
@@ -52,28 +52,24 @@ export class CadastroProdutos2Component implements OnInit {
 
   ngOnInit(): void { // ngOnInit server pra verificar o subscribe quando o programa for inicializado
     /// TODO: terminar aqui 
-    this.loadProdutos();
+    this.loadProducts()
+    
 
     console.log("saas")
 
 
-
-
-
-
-
-
-
   }
 
-  loadProdutos(){
+  loadProducts(){
 
-    this.service.getProdutos().subscribe({
+    this.service.getProducts().subscribe({
       next: data => this.dados.push(...data), 
 
 
     })
   }
+
+
 
 
 
@@ -96,26 +92,28 @@ export class CadastroProdutos2Component implements OnInit {
     let novoArray: any[] = []; 
 
     
-    this.Forms.valueChanges.subscribe(() => { // aqui é ativado quando muda alguma coisa no array (deletado, adicionado ou melhorado) 
+    this.Forms.valueChanges.subscribe(() => { // aqui é ativado quando muda alguma coisa no array de Array (deletado, adicionado ou melhorado) 
       Object.values(this.Forms.value).forEach(item => {
         if(item !== null && item !== undefined && item !== '' ){
           // colocar mais condições aqui 
           novoArray.push(item)
         }
       })
+      
       this.Array2 = novoArray.map(item => item.toString().toLowerCase().trim()) 
+
       novoArray = []
       
     })
 
 
     
-    console.log(this.Array2)
 
     console.log(this.dados)
-    console.log(typeof this.dados)
-    console.log(typeof this.Array)
-    console.log(typeof this.Array2) // precisa fazer alguma coisa aqui 
+
+    console.log(this.Array2) // precisa fazer alguma coisa aqui 
+
+   
 
     // precisa fazer com que o programa edite, poste e delete um arranjo de dados, e envie ao banco de dados
     // ou seja, precisa atualizar todo o código daqui
@@ -138,16 +136,28 @@ export class CadastroProdutos2Component implements OnInit {
   botao(){
   
 
-    const result1 = this.Array.some(element => element.ID.toString().toLowerCase().trim() == this.Array2[0].toString().toLowerCase().trim()) // some() é muito util e conveniente. Ele filtra as informações.
-    const result2 = this.Array.some(element => element.nome.toString().toLowerCase().trim() == this.Array2[1].toString().toLowerCase().trim())
-   
-   
+    let result1: any = "" ///= this.dados.some(element => element.ID.toString().toLowerCase().trim() == this.Array2[0].toString().toLowerCase().trim()) // some() é muito util e conveniente. Ele filtra as informações.
+    let result2: any = ""  ///= this.dados.some(element => element.nome.toString().toLowerCase().trim() == this.Array2[1].toString().toLowerCase().trim()) /// Erro aqui que eu não entendo 
+    
+    this.service.getProducts().subscribe({
+      next: data => {
+        result1 = data.some(element => element.id.toString().toLowerCase().trim() ==this.Array2[0].toString().toLowerCase().trim())
+        result2 = data.some(element => element.name.toString().toLowerCase().trim() == this.Array2[1].toString().toLowerCase().trim())
+
+      }
+    })
 
     console.log(result1)
-    if(result1 == true || result2 == true ){
+    console.log(result2)
+
+
+   
+
+
+    if(result1 == true || result2 == true ){ // se um elemento com esse ID ou o nome existe, então retorna true
       console.log('sim, ela existe')
       this.togglar9 = true
-      this.texto = this.produto_existe
+      this.texto = this.product_exist
       this.togglar2 = false
       
       setTimeout(() => {
@@ -157,11 +167,20 @@ export class CadastroProdutos2Component implements OnInit {
       }, 3000);
     }
     else{
-      console.log('Ela não existe')
-      this.Array.push(this.Forms.value)
+      console.log('Ela não existe') // se nenhum dos dois existe, então ela criará um novo produto 
+      //this.Array.push(this.Forms.value) 
+
+      //Feito uma modificação para adicionar um novo documento dentro de um documento json
+      this.service.addProducts(this.Forms.value).subscribe({
+        next: data => {
+          this.Products.push(data);
+          this.Forms.reset();
+        }
+      }); 
+
       
       this.togglar = !this.togglar // popup aviso de adicionar false -> true
-      this.texto = this.adicionar_sucesso
+      this.texto = this.add_success
       
       this.togglar2 = true
       this.togglar9 = true
@@ -175,8 +194,8 @@ export class CadastroProdutos2Component implements OnInit {
     
 
     
-    console.log(this.Array.length)
-    console.log(this.Array)
+    console.log(this.Products.length)
+
     this.SupaService.inserirDados(); // TODO: terminar aqui 
 
     
@@ -193,7 +212,7 @@ export class CadastroProdutos2Component implements OnInit {
    
     this.togglar4 = false // popup consultar lista fechado
     this.togglar5 = false // popup editar fechado
-    if(this.Array.length > 0){
+    if(this.Products.length > 0){
       this.togglar3 = true // ativar botão de consulta 
 
     }
@@ -236,7 +255,7 @@ export class CadastroProdutos2Component implements OnInit {
 
      
     console.log(item)
-    this.produto = item 
+    this.product = item 
 
 
     
@@ -247,13 +266,13 @@ export class CadastroProdutos2Component implements OnInit {
 
   salvarItem(item: any){
  
-    if(this.novoNome!==''  && this.Array.some(element2 => element2.nome == this.novoNome.trim().toLowerCase()) == false){
-      this.Array.forEach(element => {
-        if(element.ID === item.ID){
+    if(this.newName!==''  && this.Products.some(element2 => element2.name == this.newName.trim().toLowerCase()) == false){
+      this.Products.forEach(element => {
+        if(element.id === item.id){
       
-            element.nome = this.novoNome 
+            element.name = this.newName
       
-            this.texto = this.editar_sucesso
+            this.texto = this.edit_success
             this.togglar9 = true
             setTimeout(() => {
             this.togglar9 = false
@@ -265,7 +284,7 @@ export class CadastroProdutos2Component implements OnInit {
         }    
     })}
     else{
-            this.texto = this.produto_existe
+            this.texto = this.product_exist
             this.togglar9 = true
             setTimeout(() => {
             this.togglar9 = false
@@ -274,12 +293,12 @@ export class CadastroProdutos2Component implements OnInit {
             }, 3000);
       
     }
-        if(this.novaDescricao !=='' ){
-      this.Array.forEach(element => {
-        if(element.ID === item.ID){
-          element.descricao = this.novaDescricao
+        if(this.newDescription !=='' ){
+      this.Products.forEach(element => {
+        if(element.id === item.id){
+          element.description = this.newDescription
 
-          this.texto = this.editar_sucesso
+          this.texto = this.edit_success
           this.togglar9 = true
           setTimeout(() => {
           this.togglar9 = false
@@ -288,13 +307,13 @@ export class CadastroProdutos2Component implements OnInit {
           }, 3000);
         }    
     })}
-    if(this.novoPreco!=='' ){
-      this.Array.forEach(element => {
-        if(element.ID === item.ID){
-          element.preco = this.novoPreco
+    if(this.newPrice!=='' ){
+      this.Products.forEach(element => {
+        if(element.id === item.id){
+          element.price = this.newPrice
           this.texto = ''
 
-          this.texto = this.editar_sucesso
+          this.texto = this.edit_success
           this.togglar9 = true
           setTimeout(() => {
           this.togglar9 = false
@@ -303,12 +322,12 @@ export class CadastroProdutos2Component implements OnInit {
           }, 3000);
         }    
     })}
-    if(this.novaQuantidade!=='' ){
-      this.Array.forEach(element => {
-        if(element.ID === item.ID){
-          element.quantidade = this.novaQuantidade
+    if(this.newQuantity!=='' ){
+      this.Products.forEach(element => {
+        if(element.id === item.id){
+          element.quantity = this.newQuantity
 
-          this.texto = this.editar_sucesso
+          this.texto = this.edit_success
           this.togglar9 = true
 
           setTimeout(() => {
@@ -320,14 +339,10 @@ export class CadastroProdutos2Component implements OnInit {
     })}
 
 
-
-    
-    console.log(this.Array)
-    console.log(this.produto)
-    this.novoNome =''
-    this.novaDescricao =''
-    this.novoPreco =''
-    this.novaQuantidade = ''
+    this.newName =''
+    this.newDescription =''
+    this.newPrice =''
+    this.newQuantity = ''
     this.togglar9 = true
     
 
@@ -339,23 +354,23 @@ export class CadastroProdutos2Component implements OnInit {
   apagarItem(item: any){ // aqui ativa o popup de apagar
     this.togglar8 = true
     this.togglar4 = false
-    this.produto2 = item
+    this.product2 = item
 
 
 
     
   }
   deletarItem(item: any){
-    console.log(this.Array)
-    let numIndice = this.Array.indexOf(item.ID)
+    console.log(this.product)
+    let numIndice = this.product.indexOf(item.ID)
     console.log(numIndice)
-    this.Array.splice(numIndice, 1 )
-    console.log(this.Array)
+    this.product.splice(numIndice, 1 )
+    console.log(this.product)
     this.togglar8 = false
     this.togglar4 = true
     this.togglar9 = true
 
-    this.texto = this.apagar_sucesso
+    this.texto = this.delete_success
   
 
     setTimeout(() => {
@@ -364,7 +379,7 @@ export class CadastroProdutos2Component implements OnInit {
       
     }, 3000);
 
-    this.service.deleteProdutos(item.ID).subscribe({
+    this.service.deleteProducts(item.id).subscribe({
       next: data => console.log(data)
     })
     
