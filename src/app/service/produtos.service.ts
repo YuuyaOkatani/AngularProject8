@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Products } from '../Products';
+import { Product } from '../Products';
 import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
@@ -11,20 +11,20 @@ export class ProdutosService {
 
   constructor(private http: HttpClient) { }
 
-  getProducts(): Observable<Products[]>{
+  getProducts(): Observable<Product[]>{
    
-    return this.http.get<Products[]>(this.url); 
+    return this.http.get<Product[]>(this.url); 
     
   }
-  addProducts(array: Products): Observable<Products>{
-    return this.http.post<Products>(this.url, array)
+  addProducts(product: Product): Observable<Product>{
+    return this.http.post<Product>(this.url, product)
   }
 
-  updateProducts(array: Products): Observable<Products>{
-    return this.http.put<Products>(`${this.url}/${array.id}`, array)
+  updateProducts(product: Product): Observable<Product>{
+    return this.http.put<Product>(`${this.url}/${product.id}`, product)
   }
 
-  deleteProducts(array: Products) : Observable<void>{
-    return this.http.delete<void>(`${this.url}/${array.id}`)
+  deleteProducts(product: Product) : Observable<void>{
+    return this.http.delete<void>(`${this.url}/${product.id}`)
   }
 }
