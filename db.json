@@ -1,3 +1,11 @@
 {
-  "Products": []
+  "Products": [
+    {
+      "id": 1,
+      "name": "Yuuya Okatani",
+      "description": "dasdsa",
+      "price": 12,
+      "quantity": 12
+    }
+  ]
 }

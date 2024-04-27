@@ -8,11 +8,19 @@ import { FormGroup, FormsModule, NgModel, ReactiveFormsModule } from '@angular/f
 import { NgClass } from '@angular/common';
 import { NgbAlertModule, NgbModule, NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
+import { FooterComponent } from './footer/footer.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { LoginComponent } from './login/login.component';
+import { CoursesComponent } from './courses/courses.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CadastroProdutos2Component
+    CadastroProdutos2Component,
+    FooterComponent,
+    NavbarComponent,
+    LoginComponent,
+    CoursesComponent
   ],
   imports: [
     BrowserModule,
