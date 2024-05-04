@@ -1,0 +1,24 @@
+.component1{
+    display: flex;
+    background-color: gray;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+
+
+    
+}
+#component2{
+    background-color: rgb(48, 47, 47);
+    box-shadow: 0 4px 12px   black;
+    height: 500px;
+    width: 600px;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    position: absolute;
+
+}

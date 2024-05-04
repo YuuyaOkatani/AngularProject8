@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../students/students.component.css">
+    <title>Document</title>
+</head>
+<body class="component1">
+    <div id="component2">
+        <form [formGroup]="Forms">
+
+            <div>
+                <input id="input1" placeholder="name" formControlName="name">
+            </div>
+            <div>
+                <input id="input1" type="number" placeholder="age" formControlName="age">
+            </div>
+            <div>
+                <button type="button" id="button1" class="btn btn-primary" (click)="Activate('togglar2')">Add Student</button>
+            </div>
+
+            <div>
+                <button type="button" id="button2" class="btn btn-outline-success" (click)="Activate('togglar')">Student List</button>
+            </div>
+        
+        
+        
+        </form>
+
+    </div>
+
+    <div id="component3" [ngClass]="{'transition1' : state == 'togglar' , 'transition2' : state != 'togglar'}">
+        <div>
+            <button id="button3" (click)="Activate('')">
+                <i class="bi bi-x-circle">
+
+                </i>
+            </button>
+        </div>
+        <div id="component4">
+            <div>
+                <div id="component5" *ngFor="let data of Array">
+                    ID: {{data.id}} || Nome: {{data.name}}
+    
+                </div>
+            </div>
+            
+
+        </div>
+
+    </div>
+    
+</body>
+</html>

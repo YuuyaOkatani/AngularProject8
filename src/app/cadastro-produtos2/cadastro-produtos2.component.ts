@@ -47,7 +47,8 @@ export class CadastroProdutos2Component implements OnInit {
   product_exist = ' já foi cadastrado anteriormente 😁! '
   response = false 
   datas: any =  [] ; 
-  text = ''
+  text = ''; 
+  state: String = ''; 
 
 
   ngOnInit(): void { // ngOnInit server pra verificar o subscribe quando o programa for inicializado
@@ -169,11 +170,13 @@ export class CadastroProdutos2Component implements OnInit {
         next: data => {
           this.Product.push(data)
           this.loadProducts()
+          
         }
       })
+      this.Activate("togglar")
  
       
-      this.togglar = !this.togglar // popup aviso de adicionar false -> true
+      // this.togglar = !this.togglar // popup aviso de adicionar false -> true
       this.text = this.add_success
       
       this.togglar2 = true
@@ -197,64 +200,10 @@ export class CadastroProdutos2Component implements OnInit {
 
   }
 
-  fechar(value: boolean){
-    this.togglar = false // popup aviso de adicionar fechado
-   
-    this.togglar4 = false // popup consultar lista fechado
-    this.togglar5 = false // popup editar fechado
-    if(this.Product.length > 0){
-      this.togglar3 = true // ativar botão de consulta 
-
-    }
-    else{
-      this.togglar3 = false
-
-    }
-    if(value == true ){
-      this.togglar4 = true
-      this.togglar7 = true
 
 
 
-    }
-    if(this.togglar8 == true){
-      this.togglar8 = false
-      this.togglar4 = true
 
-    }
-    else{
-      this.togglar8 = false
-    }
-
-    
-    
-  }
-
-  consultarLista(){
-    
-    this.togglar4 = !this.togglar4 // popup abrir consultar lista  false --> true
-
-    
-  }
-
-  editarItem(item:any){
-    this.togglar5 = true
-    this.togglar4 = false
-    this.togglar7 = false
-
-
-     
-    console.log(item)
-    this.product = item 
-
-    
-
-
-    
-    
-
-
-  }
 
   salvarItem(item: any){
     
@@ -337,58 +286,9 @@ export class CadastroProdutos2Component implements OnInit {
 
   }
 
-  apagarItem(item: any){ // aqui ativa o popup de apagar
-    this.function2(item)
 
 
 
-    
-  }
-  deletarItem(item: any){
-
-    let numIndice = this.Product.indexOf(item.id)
-    this.Product.splice(numIndice, 1 )
-    this.function1(item);
-
-    this.service.deleteProducts(item).subscribe({
-      next: () => {
-        this.loadProducts()
-        
-      }
-    })
-    
-    
-
-  }
-
-  function1(item:any){
-
-    this.togglar8 = false
-    this.togglar4 = true
-    this.togglar9 = true
-
-    this.text = this.delete_success
-  
-
-    setTimeout(() => {
-      this.togglar9 = false
-      
-      
-    }, 3000);
-
-    this.service.deleteProducts(item.id).subscribe({
-      next: data => console.log(data)
-    })
-
-  }
-
-  function2(item:any){
-    this.togglar8 = true
-    this.togglar4 = false
-    this.product2 = item
-
-
-  }
 
   function3(){
     console.log(this.Product)
@@ -397,7 +297,7 @@ export class CadastroProdutos2Component implements OnInit {
     this.newDescription =''
     this.newPrice =''
     this.newQuantity = ''
-    this.togglar9 = true
+  
 
   }
 
@@ -409,6 +309,84 @@ export class CadastroProdutos2Component implements OnInit {
       
           }, 3000);
 
+  }
+
+  Activate(states: String , item? :  Object){
+    console.log(states)
+    switch(states){
+      case "togglar":
+        this.state = "togglar"; 
+      break;
+
+      case "togglar2":
+        this.state = "togglar2"; 
+      break;
+
+      case "togglar3":
+        this.state = "togglar3"; 
+      break;
+      
+      case "togglar4":
+        this.state = "togglar4"; 
+        this.product2 = item; 
+
+        
+     
+        let numIndice = this.Product.indexOf(this.product2.id)
+        this.Product.splice(numIndice, 1 );
+        this.service.deleteProducts(this.product2.id).subscribe({
+          next: data => console.log(data)
+        });
+        this.text = this.delete_success;
+        this.service.deleteProducts(this.product2).subscribe({
+          next: () => {
+            this.function4();
+            this.loadProducts()
+            
+            
+          }
+        })
+
+    
+    
+
+
+
+    
+
+
+    
+      break;
+
+      case "togglar5":
+        this.state = "togglar5"; 
+        console.log(item)
+        this.product = item 
+      break;
+
+      case "togglar6":
+        this.state = "togglar6"; 
+      break;
+
+      case "togglar7":
+        this.state = "togglar7"; 
+      break;
+
+      case "togglar8":
+        this.state = "togglar8"; 
+        this.product2 = item
+      break;
+
+      case "":
+        this.state = ""; 
+      break;
+
+
+
+
+      
+
+    }
   }
 
   

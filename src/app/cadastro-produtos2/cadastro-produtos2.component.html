@@ -6,189 +6,176 @@
     <link rel="stylesheet" href="../cadastro-produtos2/cadastro-produtos2.component.css">
     <title>Document</title>
 </head>
-<body>
-    <div class="component1">
-        <div class="component2">
-           <form [formGroup]="Forms"  > 
-            <div>
-                <input class="input1" id="id" placeholder="id" type="number" for="ID" formControlName="id"   ngbPopover="Coloque o ID do produto! " triggers="mouseenter:mouseleave" >
-                <input class="input1" id="name" placeholder="name" type="string" for="nome" formControlName="name" ngbPopover="Coloque o nome do produto! " triggers="mouseenter:mouseleave" >
-                <textarea class="input2" id="description" placeholder="description" for="descricao" formControlName="description" ngbPopover="Coloque a descrição do produto! " triggers="mouseenter:mouseleave"></textarea>
-                <input class="input1" id="price" placeholder="price" type="number" for="preco" formControlName="price" ngbPopover="Coloque o preço do produto! " triggers="mouseenter:mouseleave">
-                <input class="input1" id="quantity" placeholder="quantity" type="number" for="quantidade" formControlName="quantity" ngbPopover="Coloque a quantidade do produto! " triggers="mouseenter:mouseleave">
-                <div class="d-grid gap-2"[ngClass]="{'transition1_3' : Array2.length == 5, 'transition2_3': Array2.length < 5}" style="position: fixed;">
-                    <button class="btn btn-primary" type="button" id="button" (click)="botao()"  [disabled]="togglar8">Salvar produto 💾</button>
-                    
-                    
-                <!--  precisa mudar tudo que tiver em portugues em ingles -->
-                
-                </div> 
-                <div class="d-grid gap-2" *ngIf="togglar3  " >
-                    <button type="button" class="btn btn-outline-success button3" (click)="consultarLista()" [disabled]="togglar8">Ver a lista de produtos cadastrados</button>
-                </div>
-                
-                
-                
-                <div id="component4"  [ngClass]="{'transition' : togglar4 , 'transition2': !togglar4}">
-                    <div style="display: flex; position: fixed; margin-bottom: 350px;">
-                        <i class="bi bi-x-circle button4" (click)="fechar(false)" ></i>
-                        
-                    </div>
+<body class="component1">
+    <div class="component2">
+        <form [formGroup]="Forms"  > 
+         <div>
+             <input class="input1" id="id" placeholder="id" type="number" for="ID" formControlName="id"   ngbPopover="Coloque o ID do produto! " triggers="mouseenter:mouseleave" >
+             <input class="input1" id="name" placeholder="name" type="string" for="nome" formControlName="name" ngbPopover="Coloque o nome do produto! " triggers="mouseenter:mouseleave" >
+             <textarea class="input2" id="description" placeholder="description" for="descricao" formControlName="description" ngbPopover="Coloque a descrição do produto! " triggers="mouseenter:mouseleave"></textarea>
+             <input class="input1" id="price" placeholder="price" type="number" for="preco" formControlName="price" ngbPopover="Coloque o preço do produto! " triggers="mouseenter:mouseleave">
+             <input class="input1" id="quantity" placeholder="quantity" type="number" for="quantidade" formControlName="quantity" ngbPopover="Coloque a quantidade do produto! " triggers="mouseenter:mouseleave">
 
-                    
-                    <!--<i class="bi bi-x-circle button4" (click)="fechar()" ></i>-->
-                    <div class="alert alert-info label2" role="alert">
-                        Lista de cadastrados 📜💾
-                      </div>
+             <div class="d-grid gap-2">
+                 <button class="btn btn-primary" type="button" id="button" (click)="botao()"  [disabled]="togglar8">Salvar produto 💾</button>
+             </div> 
 
-
-                       
-                    
-                
-                    <div id="component5">
-                        <div id="component6" *ngFor="let item of datas"> <!--Modificado aqui para mostrar o array de documento json--> 
-                            ID: {{item.id}} || Nome: {{item.name}}
-                            
-                            <button id="button6" (click)="editarItem(item)">
-                                <i class="bi bi-pencil-fill"></i>
-                            </button>
-                            <button id="button5" (click)="apagarItem(item)">
-                                <i class="bi bi-trash-fill"></i>
-                            </button>
-                            
-
-                            
-                        
-                        </div>  
-                        
-
-                    </div>
-                
-                </div>
-
-                
-
-                
-                
-                
-                  
-
-                <div id="component3" [ngClass]="{'transition' : togglar , 'transition2': !togglar}"> 
-                    <div style="margin-bottom: 190px;">
-                        <i class="bi bi-x-circle button2" (click)="fechar(false)" ></i>
-                        <div class="alert alert-success label" role="alert" *ngIf="togglar2" >
-                            Formulário Salvo! 🥳
-                            <div>
-                                ID do produto: {{Array2[0]}}
-                               
-                            </div>
-
-                            <div>
-                                Nome do produto: {{Array2[1]}}
-                            
-                            </div>
-                            <div>
-                                Descrição: {{Array2[2]}}
-                          
-                            </div>
-                            <div>
-                                Preço do produto por unidade: {{Array2[3]}}
-                           
-                            </div>
-                            <div>
-                                Quantidade: {{Array2[4]}}
-                            </div>
-                        </div>
-
-                        
-                    </div>
-               
-                </div>
-
-
-                <div style="position: fixed;" [ngClass]="{'transition': togglar9  , 'transition2': !togglar9}">
-                    <div class="alert alert-success label5" role="alert" >
-                        o produto {{text === add_success ? add_success : 
-                                    text === edit_success ? edit_success:
-                                    text === delete_success?  delete_success : 
-                                    text === product_exist? product_exist: ''}} 
-                      </div>
-                </div>
-                
-            
-            </div>
-        
-        
-        </form>
-
-        <div id="component7"  [ngClass]="{'transition': togglar5 , 'transition2': !togglar5}">
-            <div style="display: flex; position: fixed; margin-bottom: 40px;">
-                <i class="bi bi-x-circle button7" (click)="fechar(true)" ></i>           
-            </div>
-            <div>
-                <div class="alert alert-info label3" role="alert" *ngIf="product">
-                    <div>
-                        ID do produto: {{product.ID}}
-                  
-                    </div>
-                    <div>
-                        Nome do produto:
-                        <input class="input3" [(ngModel)]="newName" [placeholder]="product.name">
-                    </div>
-                    <div>
-                        Descrição do produto:
-                        <input class="input4" [(ngModel)]="newDescription" [placeholder]="product.description">
-                    </div>
-                    <div>
-                        Preço do produto:
-                        <input class="input5" [(ngModel)]="newPrice" [placeholder]="product.price">
-                    </div>
-                    <div>
-                        Quantidade do produto:
-                        <input class="input6" [(ngModel)]="newQuantity" [placeholder]="product.quantity">
-                    </div>
-                    <button type="button" class="btn btn-outline-success" (click)="salvarItem(product)">Salvar ✏💾</button>
-                    
-                  
-
-
-                </div>
-                
-                    
-
+             <div class="d-grid gap-2" >
+                 <button type="button" class="btn btn-outline-success button3" (click)="Activate('togglar4')" [disabled]="togglar8">Ver a lista de produtos cadastrados</button>
+             </div>
              
-   
+             <div id="component4"  [ngClass]="{'transition' : state == 'togglar4' , 'transition2': state != 'togglar4'}">
+                 <div style="display: flex; position: fixed; margin-bottom: 350px;">
+                     <i class="bi bi-x-circle button4" (click)=" Activate('') " ></i>
+                     
+                 </div>
 
-            </div>
+                 
+                 <!--<i class="bi bi-x-circle button4" (click)="fechar()" ></i>-->
+                 <div class="alert alert-info label2" role="alert">
+                     Lista de cadastrados 📜💾
+                   </div>
+
+
+                    
+                 
+             
+                 <div id="component5">
+                     <div id="component6" *ngFor="let item of datas"> <!--Modificado aqui para mostrar o array de documento json--> 
+                         ID: {{item.id}} || Nome: {{item.name}}
+                         
+                         <button id="button6" (click)="Activate('togglar5' , item)">
+                             <i class="bi bi-pencil-fill"></i>
+                         </button>
+                         <button id="button5" (click)="Activate('togglar8' , item)">
+                             <i class="bi bi-trash-fill"></i>
+                         </button>
+                         
+
+                         
+                     
+                     </div>  
+                     
+
+                 </div>
+             
+             </div>
+
+             <div id="component3" [ngClass]="{'transition' : state == 'togglar' , 'transition2': state !== 'togglar'}"> 
+                 <div style="margin-bottom: 190px;">
+                     <i class="bi bi-x-circle button2" (click)="Activate('')" ></i>
+                     <div class="alert alert-success label" role="alert" *ngIf="togglar2" >
+                         Formulário Salvo! 🥳
+                         <div>
+                             ID do produto: {{Array2[0]}}
+                            
+                         </div>
+
+                         <div>
+                             Nome do produto: {{Array2[1]}}
+                         
+                         </div>
+                         <div>
+                             Descrição: {{Array2[2]}}
+                       
+                         </div>
+                         <div>
+                             Preço do produto por unidade: {{Array2[3]}}
+                        
+                         </div>
+                         <div>
+                             Quantidade: {{Array2[4]}}
+                         </div>
+                     </div>
+
+                     
+                 </div>
             
-   
-        </div>
-
-        <div id="component8" [ngClass]="{'transition': togglar8 , 'transition2': !togglar8}">
-            <div style="display: flex; position: fixed; margin-bottom: 100px;">
-                <i class="bi bi-x-circle button8" (click)="fechar(false)" ></i>
-                
-            </div>
-            <div class="alert alert-danger label4" role="alert">
-                Tem certeza? O produto será apagado da lista pra sempre! 
-              </div>
-
-            <div style="margin-top: 100px;">
-                <button type="button" class="btn btn-outline-danger" (click)="deletarItem(product2)">Sim, apagar</button>
-            </div>
-            
-            
-
-        </div>
+             </div>
 
 
-            
+             <div style="position: fixed;" [ngClass]="{'transition': togglar9  , 'transition2': !togglar9}">
+                 <div class="alert alert-success label5" role="alert" >
+                     o produto {{text === add_success ? add_success : 
+                                 text === edit_success ? edit_success:
+                                 text === delete_success?  delete_success : 
+                                 text === product_exist? product_exist: ''}} 
+                   </div>
+             </div>
+             
+         
+         </div>
+     
+     
+     </form>
+
+     <div id="component7"  [ngClass]="{'transition': state == 'togglar5' , 'transition2': state != 'togglar5'}">
+         <div style="display: flex; position: fixed; margin-bottom: 40px;">
+             <i class="bi bi-x-circle button7" (click)="Activate('togglar4')" ></i>           
+         </div>
+         <div>
+             <div class="alert alert-info label3" role="alert" *ngIf="product">
+                 <div>
+                     ID do produto: {{product.ID}}
+               
+                 </div>
+                 <div>
+                     Nome do produto:
+                     <input class="input3" [(ngModel)]="newName" [placeholder]="product.name">
+                 </div>
+                 <div>
+                     Descrição do produto:
+                     <input class="input4" [(ngModel)]="newDescription" [placeholder]="product.description">
+                 </div>
+                 <div>
+                     Preço do produto:
+                     <input class="input5" [(ngModel)]="newPrice" [placeholder]="product.price">
+                 </div>
+                 <div>
+                     Quantidade do produto:
+                     <input class="input6" [(ngModel)]="newQuantity" [placeholder]="product.quantity">
+                 </div>
+                 <button type="button" class="btn btn-outline-success" (click)="salvarItem(product)">Salvar ✏💾</button>
+                 
+               
 
 
-        
-            
-        </div>
-    </div>
+             </div>
+             
+                 
+
+          
+
+
+         </div>
+         
+
+     </div>
+
+     <div id="component8" [ngClass]="{'transition': state == 'togglar8' , 'transition2': state != 'togglar8'}">
+         <div style="display: flex; position: fixed; margin-bottom: 100px;">
+             <i class="bi bi-x-circle button8" (click)="Activate('togglar4')" ></i>
+             
+         </div>
+         <div class="alert alert-danger label4" role="alert">
+             Tem certeza? O produto será apagado da lista pra sempre! 
+           </div>
+
+         <div style="margin-top: 100px;">
+             <button type="button" class="btn btn-outline-danger" (click)="Activate('togglar4' , product2)">Sim, apagar</button>
+         </div>
+         
+         
+
+     </div>
+
+
+         
+
+
+     
+         
+     </div>
     
 </body>
 </html>
