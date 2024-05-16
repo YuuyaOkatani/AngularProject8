@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Students } from '../Students';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { StudentsService } from '../service/students.service';
+import { courses } from '../Courses';
+import { CoursesService } from '../service/courses.service';
 
 @Component({
   selector: 'app-students',
@@ -10,12 +12,16 @@ import { StudentsService } from '../service/students.service';
 })
 export class StudentsComponent implements OnInit{
   Forms: FormGroup; 
-  Student: Students[] = [];
+  Students: Students[] = [];
+  Courses: courses[] = [];
   Array: any[] = [];
   Array2: any = [];
   code: Number = 0; 
   newName: String ='';
   newAge: any = '';
+  text1 = 'Added student successfully! 🥳'
+  text2 = 'Updated student successfully! 🥳'
+  text3 = 'Deleted student successfully! 🥳'
   
 
   state = '';
@@ -25,13 +31,14 @@ export class StudentsComponent implements OnInit{
       
   }
 
-  constructor(private formbuilder: FormBuilder, private studentservice: StudentsService ){
+  constructor(private formbuilder: FormBuilder, private studentservice: StudentsService , private courseservice: CoursesService){
     this.Forms = formbuilder.group({
       
       
       id: [this.code], 
       name: [''],
-      age:[]
+      age:[],
+      course:[]
     })
 
     this.Forms.valueChanges.subscribe(() => {
@@ -44,13 +51,21 @@ export class StudentsComponent implements OnInit{
 
   loadStudents(){
     this.studentservice.getStudents().subscribe(data => {
-      this.Student = data;
+      this.Students = data;
       this.Array = [];
       this.Array.push(...data);
 
     })
   
     
+  }
+
+  loadCourses(){
+    this.courseservice.getCourses().subscribe( data => {
+       this.Courses = data; 
+       // agora é so terminar o resto
+
+    })
   }
 
 
@@ -71,7 +86,7 @@ export class StudentsComponent implements OnInit{
 
         this.studentservice.addStudents(this.Forms.value).subscribe({
           next: data => {
-            this.Student.push(data)
+            this.Students.push(data)
      
             this.loadStudents()
           }
