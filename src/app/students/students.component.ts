@@ -12,7 +12,11 @@ export class StudentsComponent implements OnInit{
   Forms: FormGroup; 
   Student: Students[] = [];
   Array: any[] = [];
+  Array2: any = [];
   code: Number = 0; 
+  newName: String ='';
+  newAge: any = '';
+  
 
   state = '';
 
@@ -45,13 +49,13 @@ export class StudentsComponent implements OnInit{
       this.Array.push(...data);
 
     })
-    console.log(this.Array)
+  
     
   }
 
 
 
-  Activate(states: String, data?: object){
+  Activate(states: String, datas?: any){
     switch(states){
       case "togglar":
         this.state = 'togglar'; 
@@ -75,6 +79,75 @@ export class StudentsComponent implements OnInit{
         })
 
       break; 
+
+      case "togglar3":
+        this.state = 'togglar3'; 
+        console.log("Editar" , datas);
+        
+        this.Array2 = datas;
+
+      break;
+
+      case "togglar4":
+        this.state = 'togglar4'
+        this.Array2 = datas
+        console.log("Apagar" , datas)
+      break;
+
+      case "togglar5":
+       
+
+
+        console.log()
+        this.Array.forEach(element => {
+          if(element.id == datas.id){
+            element.name = this.newName
+            element.age = this.newAge
+            this.studentservice.updateStudents(element).subscribe({
+              next: data => 
+                {
+                  data.name = element.name
+            
+                  this.Array2.name = '';
+                  this.Array2.age = '';
+                
+
+                  this.loadStudents()
+              }
+
+               
+              
+            })
+      
+          }
+        })
+
+        
+        
+
+
+      break;
+      
+      case "togglar6":
+      
+        
+        
+        this.Array.forEach(element => {
+          if(element.id === this.Array2.id){
+            console.log(element.id);
+           
+            this.studentservice.deleteStudents(element).subscribe({
+              next: () =>  this.loadStudents()
+            })
+        
+        
+          }
+        })
+  
+        this.state = 'togglar';
+        
+      break;
+
 
 
       case "":

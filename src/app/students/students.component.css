@@ -56,16 +56,72 @@
 }
 
 #component5{
-    height: 25px;
+    height: 40px;
     width: 510px;
     border-radius: 10px;
     background-color: rgb(0, 132, 255);
     color: white;
     margin-bottom: 5px;
-    margin-top: 10px;
+    margin-top: 15px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
 
-    padding: 2px;
+}
+
+
+#component6{
+    background-color: rgb(48, 47, 47);
+    box-shadow: 0 4px 12px   black;
+    height: 500px;
+    width: 600px;
+    border-radius: 10px;
+    justify-content: center;
+
+    display: flex;
+    position: fixed;
+    padding: 10px;
+    top: 100%;
+
+}
+
+#component7{
+    background-color: #9bf7f7;
+    height: 300px;
+    width: 520px;
+    display: flex;
+    position: fixed;
+    border-radius: 10px;
+    margin-top: 120px;
+    padding: 10px;
     
+
+ 
+}
+
+#component8{
+    background-color: rgb(48, 47, 47);
+    box-shadow: 0 4px 12px   black;
+    height: 500px;
+    width: 600px;
+    border-radius: 10px;
+
+   
+
+    display: flex;
+    position: fixed;
+
+    padding: 10px;
+    top: 100%
+}
+
+#component9{
+  
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    display: flex;
 }
 
 .transition1{
@@ -117,4 +173,48 @@
     align-items: center;
     justify-content: center;
     
+}
+
+#button4{
+    margin-left: 10px;
+
+     height: 30px; 
+     width: 30px;
+    
+    border-radius: 10px;
+    background-color: red;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    color: black;
+    margin-right: 10px;
+
+}
+#button5{
+    margin-left:auto;
+  
+     height: 30px;
+     width: 30px;
+
+    border-radius: 10px;
+    background-color: rgb(0, 255, 0);
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    color: black;
+
+}
+
+
+#input2{
+    height: 25px;
+    width: 200px;
+    border-radius: 10px;
+ 
+    margin-top: 10px;  
+}
+
+#alert1{
+    margin-top: 100px;
+    position: relative;
 }

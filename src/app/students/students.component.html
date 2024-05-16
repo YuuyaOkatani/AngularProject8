@@ -41,7 +41,22 @@
         <div id="component4">
             <div>
                 <div id="component5" *ngFor="let data of Array">
-                    ID: {{data.id}} || Nome: {{data.name}}
+                    <div>
+                        ID: {{data.id}} || Nome: {{data.name}}
+                    </div>
+                    
+
+                        <button id="button5" class="btn btn-success" (click)="Activate('togglar3' , data)">
+                            <i class="bi bi-pencil-fill"></i>
+                        </button>
+                    
+
+             
+                    <div>
+                        <button id="button4" class="btn btn-danger" (click)="Activate('togglar4' , data)">
+                            <i class="bi bi-trash-fill"></i>
+                        </button>
+                    </div>
     
                 </div>
             </div>
@@ -50,6 +65,68 @@
         </div>
 
     </div>
+
+    <div id="component6" [ngClass]="{'transition1' : state == 'togglar3' , 'transition2' : state != 'togglar3'}">
+        <div>
+            <button id="button3" (click)="Activate('togglar')">
+                <i class="bi bi-x-circle">
+
+                </i>
+            </button>
+        </div>
+        <div id="component7">
+            <div>
+                <div>
+                    <p>
+                        Student ID: {{Array2.id}}
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        Name: <input id="input2" [(ngModel)]="newName" [placeholder]="Array2.name" >
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        Age:  <input id="input2" [(ngModel)]="newAge" [placeholder]="Array2.age" type="number" > 
+                    </p>
+                </div>
+                <button type="button" class="btn btn-outline-success" (click)="Activate('togglar5' , Array2)">Salvar ✏💾</button>
+             
+
+                
+            </div>
+
+
+        </div>
+
+    </div>
     
+    <div id="component8" [ngClass]="{'transition1' : state == 'togglar4' , 'transition2' : state!= 'togglar4'}">
+        <div>
+            <div>
+                <button id="button3" (click)="Activate('togglar')">
+                    <i class="bi bi-x-circle">
+                        </i>
+                </button>
+            </div>
+            <!---//TODO Colocar os elementos de aviso de que irá ser deletado-->
+            <div id="component9">
+                <div class="alert alert-danger" id="alert1" role="alert">
+                    The student will be permanently deleted from the list. Are you sure?
+                  </div>
+                <div>
+                    
+                      <button type="button"  class="btn btn-outline-danger" (click)="Activate('togglar6')">Yes, i'm sure. Delete</button>
+                </div>
+                
+    
+                  
+            </div>
+        </div>
+        
+        
+
+    </div>
 </body>
 </html>
