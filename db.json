@@ -24,6 +24,30 @@
       "courseID": 2,
       "active": false,
       "period": "noite"
+    },
+    {
+      "id": 3,
+      "name": "jorge",
+      "age": 18,
+      "courseID": 3,
+      "active": true,
+      "period": null
+    },
+    {
+      "id": 4,
+      "name": "jorge",
+      "age": 18,
+      "courseID": 3,
+      "active": true,
+      "period": null
+    },
+    {
+      "id": 5,
+      "name": "pedro",
+      "age": 18,
+      "courseID": 3,
+      "active": true,
+      "period": "manhã"
     }
   ],
   "courses": [
