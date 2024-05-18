@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { StudentsService } from '../service/students.service';
 import { courses } from '../Courses';
 import { CoursesService } from '../service/courses.service';
-
+import { period } from '../Periods';
 @Component({
   selector: 'app-students',
   templateUrl: './students.component.html',
@@ -14,6 +14,7 @@ export class StudentsComponent implements OnInit{
   Forms: FormGroup; 
   Students: Students[] = [];
   Courses: courses[] = [];
+  periods =  Object.values(period)
   Array: any[] = [];
   Array2: any = [];
   code: Number = 0; 
@@ -28,6 +29,7 @@ export class StudentsComponent implements OnInit{
 
   ngOnInit(): void {
     this.loadStudents();
+    this.loadCourses()
       
   }
 
@@ -38,7 +40,9 @@ export class StudentsComponent implements OnInit{
       id: [this.code], 
       name: [''],
       age:[],
-      course:[]
+      courseID:[],
+      active: [false],
+      period:[]
     })
 
     this.Forms.valueChanges.subscribe(() => {
@@ -66,6 +70,31 @@ export class StudentsComponent implements OnInit{
        // agora é so terminar o resto
 
     })
+  }
+
+  compareCourses(course1: courses, course2: courses): boolean {
+    return course1 && course2 ? course1.id == course2.id : course1 === course2
+  }
+
+  getcourseName(courseID: number): courses | undefined {
+    return this.Courses.find(item => item.id === courseID);
+
+  }
+
+  get course(): any {
+    return this.Forms.get('courseID');
+  }
+
+  get name(): any {
+    return this.Forms.get('name');
+  }
+
+  get age(): any {
+    return this.Forms.get('age');
+  }
+
+  get period(): any {
+    return this.Forms.get('period');
   }
 
 

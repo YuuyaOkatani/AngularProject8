@@ -3,13 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../courses/courses.component.css">
+    <link rel="stylesheet" href="../students/students.component.css">
     <title>Document</title>
 </head>
 <body class="component1">
     <div id="component2">
+        <div>
+            <form [formGroup]="Forms">
+                <div>
+                    <input id="input1" placeholder="name" formControlName="name">
+                </div>
+            </form>
+            <div>
+                <div>
+                    <button type="button" id="button1" class="btn btn-primary" (click)="Activate('togglar2')">Add Course</button>
+                </div>
+        
+                <div>
+                    <button type="button" id="button2" class="btn btn-outline-success" (click)="Activate('togglar')">Course List</button>
+                </div>
+            </div>
+        </div>
+        
         
 
     </div>
+    <div id="component3" [ngClass]="{'transition1': togglar == 'togglar', 'transition2': togglar != 'togglar'} ">
+        <div>
+            <button id="button3" (click)="Activate('')">
+                <i class="bi bi-x-circle">
+                    </i>
+            </button>
+        </div>
+        <div id="component4">
+            <div>
+                <div id="component5" *ngFor="let item of courses">
+                    <p>
+                        Name: {{item.name}} 
+                    </p>
+                    <button id="button5" (click)="Activate('togglar3', item)">
+                        <i class="bi bi-pencil-fill"></i>
+                    </button>
+                    <button id="button4" (click)="Activate('togglar4', item)">
+                        <i class="bi bi-trash-fill"></i>
+                    </button>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="component3" [ngClass]="{'transition1': togglar == 'togglar3', 'transition2': togglar != 'togglar3'}">
+        <div>
+            <button id="button3" (click)="Activate('togglar')">
+                <i class="bi bi-x-circle">
+                    </i>
+            </button>
+        </div>
+        <div id="component7">
+            <div>
+                <div>
+                    <p>
+                        Course ID: {{Array?.id}}
+                    </p>
+
+                </div>
+                <div>
+                    <p>
+                        Name: <input id="input2" [(ngModel)]="newName" [placeholder]="Array?.name" >
+                    </p>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-outline-success" (click)="Activate('togglar5', Array)">Salvar ✏💾</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="component3" [ngClass]="{'transition1': togglar == 'togglar4', 'transition2': togglar != 'togglar4'}">
+        <div>
+            <button id="button3" (click)="Activate('togglar')">
+                <i class="bi bi-x-circle">
+                    </i>
+            </button>
+            <div id="component9">
+                <div class="alert alert-danger" id="alert1" role="alert">
+                    The course will be permanently deleted from the list. Are you sure?
+                  </div>
+                <div>
+                    
+                      <button type="button"  class="btn btn-outline-danger" (click)="Activate('togglar6', Array)">Yes, i'm sure. Delete</button>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+
+
 </body>
 </html>

@@ -17,12 +17,28 @@
                 <input id="input1" type="number" placeholder="age" formControlName="age">
             </div>
             <div>
+                <select class="form-select" formControlName="courseID" [compareWith]="compareCourses">
+                    <option *ngFor="let course of Courses" [ngValue]="course.id">
+                        {{course.name}}
+                    </option>
+                
+                
+                </select>
+            </div>
+            <span *ngFor="let period of periods">
+                <input type="radio" formControlName="period" [value]="period" class="ms-2 me-1"/>
+                <label style="color: aliceblue;">{{period}}</label>
+            
+            
+            </span>
+            <div>
                 <button type="button" id="button1" class="btn btn-primary" (click)="Activate('togglar2')">Add Student</button>
             </div>
 
             <div>
                 <button type="button" id="button2" class="btn btn-outline-success" (click)="Activate('togglar')">Student List</button>
             </div>
+            
         
         
         
@@ -44,14 +60,9 @@
                     <div>
                         ID: {{data.id}} || Nome: {{data.name}}
                     </div>
-                    
-
                         <button id="button5" class="btn btn-success" (click)="Activate('togglar3' , data)">
                             <i class="bi bi-pencil-fill"></i>
                         </button>
-                    
-
-             
                     <div>
                         <button id="button4" class="btn btn-danger" (click)="Activate('togglar4' , data)">
                             <i class="bi bi-trash-fill"></i>

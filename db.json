@@ -11,11 +11,33 @@
   "Students": [
     {
       "id": 1,
-      "name": "dddd",
-      "age": 11
+      "name": "saas",
+      "age": 11,
+      "courseID": 3,
+      "active": false,
+      "period": null
+    },
+    {
+      "id": 2,
+      "name": "saas",
+      "age": 111,
+      "courseID": 2,
+      "active": false,
+      "period": "noite"
     }
   ],
-  "courses":[
-    
+  "courses": [
+    {
+      "id": 1,
+      "name": "saas"
+    },
+    {
+      "id": 2,
+      "name": "meme"
+    },
+    {
+      "id": 3,
+      "name": "matematica"
+    }
   ]
 }
