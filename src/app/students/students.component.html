@@ -17,23 +17,26 @@
                 <input id="input1" type="number" placeholder="age" formControlName="age">
             </div>
             <div>
-                <select class="form-select" formControlName="courseID" [compareWith]="compareCourses">
-                    <option *ngFor="let course of Courses" [ngValue]="course.id">
+                <select class="form-select" formControlName="courseId" [compareWith]="compareCourses">
+                    <option *ngFor="let course of courses" [ngValue]="course.id">
                         {{course.name}}
                     </option>
                 
                 
                 </select>
             </div>
-            <span *ngFor="let period of periods">
-                <input type="radio" formControlName="period" [value]="period" class="ms-2 me-1"/>
-                <label style="color: aliceblue;">{{period}}</label>
+            <div style="margin-top: 10px; margin-bottom: 10px;">
+                <span *ngFor="let period of periods">
+                    <input type="radio" formControlName="period" [value]="period" class="ms-2 me-1"/>
+                    <label style="color: aliceblue;">{{period}}</label>
+                
+                
+                </span>
+            </div>
             
-            
-            </span>
             <div>
                 <input class="form-check-input ms-2" type="checkbox" value="" id="active" formControlName="active"/>
-                <label style="color: aliceblue;"> Active</label>
+                <label style="color: aliceblue; margin-left: 10px;">Active</label>
             </div>
             <div>
                 <button type="button" id="button1" class="btn btn-primary" (click)="Activate('togglar2')">Add Student</button>

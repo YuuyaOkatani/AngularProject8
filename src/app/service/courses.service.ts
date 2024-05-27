@@ -11,7 +11,11 @@ export class CoursesService {
   constructor(private http: HttpClient) { }
   url = 'http://localhost:3000/courses';
   getCourses(): Observable<courses[]> {
-    return this.http.get<courses[]>(this.url);
+    return this.http.get<courses[]>(this.url); 
+  }
+
+  getCourse(id:number ): Observable<courses>{
+    return this.http.get<courses>(`${this.url}/${id}`);
   }
 
   addCourses(course: courses): Observable<courses> {

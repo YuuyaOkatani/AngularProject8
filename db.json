@@ -1,67 +1,23 @@
 {
-  "Products": [
-    {
-      "id": 1,
-      "name": null,
-      "description": null,
-      "price": null,
-      "quantity": null
-    }
-  ],
+  "Products": [],
   "Students": [
     {
       "id": 1,
-      "name": "saas",
-      "age": 11,
-      "courseID": 3,
-      "active": false,
-      "period": null
-    },
-    {
-      "id": 2,
-      "name": "saas",
-      "age": 111,
-      "courseID": 2,
-      "active": false,
-      "period": "noite"
-    },
-    {
-      "id": 3,
-      "name": "jorge",
-      "age": 18,
-      "courseID": 3,
+      "name": "meme",
+      "age": 19,
+      "courseId": 2,
       "active": true,
-      "period": null
-    },
-    {
-      "id": 4,
-      "name": "jorge",
-      "age": 18,
-      "courseID": 3,
-      "active": true,
-      "period": null
-    },
-    {
-      "id": 5,
-      "name": "pedro",
-      "age": 18,
-      "courseID": 3,
-      "active": true,
-      "period": "manhã"
+      "period": "Vespertino"
     }
   ],
   "courses": [
     {
       "id": 1,
-      "name": "saas"
+      "name": "math"
     },
     {
       "id": 2,
-      "name": "meme"
-    },
-    {
-      "id": 3,
-      "name": "matematica"
+      "name": "portugues"
     }
   ]
 }

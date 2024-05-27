@@ -13,7 +13,7 @@ import { period } from '../Periods';
 export class StudentsComponent implements OnInit{
   Forms: FormGroup; 
   Students: Students[] = [];
-  Courses: courses[] = [];
+  courses: courses[] = [];
   periods =  Object.values(period)
   Array: any[] = [];
   Array2: any = [];
@@ -40,7 +40,7 @@ export class StudentsComponent implements OnInit{
       id: [this.code], 
       name: [''],
       age:[],
-      courseID:[],
+      courseId:[],
       active: [false],
       period:[]
     })
@@ -66,7 +66,7 @@ export class StudentsComponent implements OnInit{
 
   loadCourses(){
     this.courseservice.getCourses().subscribe( data => {
-       this.Courses = data; 
+       this.courses = data; 
        // agora é so terminar o resto
 
     })
@@ -76,13 +76,13 @@ export class StudentsComponent implements OnInit{
     return course1 && course2 ? course1.id == course2.id : course1 === course2
   }
 
-  getcourseName(courseID: number): courses | undefined {
-    return this.Courses.find(item => item.id === courseID);
+  getcourseName(courseId: number): courses | undefined {
+    return this.courses.find(item => item.id === courseId);
 
   }
 
   get course(): any {
-    return this.Forms.get('courseID');
+    return this.Forms.get('courseId');
   }
 
   get name(): any {
@@ -97,7 +97,7 @@ export class StudentsComponent implements OnInit{
     return this.Forms.get('period');
   }
 
-
+ 
 
   Activate(states: String, datas?: any){
     switch(states){

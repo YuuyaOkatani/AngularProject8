@@ -4,12 +4,14 @@ import { CadastroProdutos2Component } from './cadastro-produtos2/cadastro-produt
 import { CoursesComponent } from './courses/courses.component';
 import { LoginComponent } from './login/login.component';
 import { StudentsComponent } from './students/students.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
-  {path: '', component: CadastroProdutos2Component},
+  {path: '', component: HomeComponent},
   {path: 'courses', component: CoursesComponent},
   {path: 'students' , component: StudentsComponent},
-  {path: 'login', component: LoginComponent}
+  {path: 'login', component: LoginComponent},
+  {path: 'products', component: CadastroProdutos2Component}
 
 
 ];

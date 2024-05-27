@@ -13,6 +13,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
 import { CoursesComponent } from './courses/courses.component';
 import { StudentsComponent } from './students/students.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { StudentsComponent } from './students/students.component';
     NavbarComponent,
     LoginComponent,
     CoursesComponent,
-    StudentsComponent
+    StudentsComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

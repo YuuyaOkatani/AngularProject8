@@ -3,6 +3,8 @@ import { CoursesService } from '../service/courses.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { courses } from '../Courses';
 import { period } from '../Periods';
+import { Students } from '../Students';
+import { StudentsService } from '../service/students.service';
 @Component({
   selector: 'app-courses',
   templateUrl: './courses.component.html',
@@ -10,6 +12,7 @@ import { period } from '../Periods';
 })
 export class CoursesComponent implements OnInit {
   courses: courses[] = [];
+  Students: Students[] = []; 
   Forms: FormGroup; 
   Array: any;
   togglar = ''; 
@@ -17,7 +20,7 @@ export class CoursesComponent implements OnInit {
   //periods: Object.values(period);
 
 
-  constructor(private formbuider: FormBuilder,  private serviceCourse : CoursesService) {
+  constructor(private formbuider: FormBuilder,  private serviceCourse : CoursesService, private serviceStudent: StudentsService) {
     this.Forms = formbuider.group({
       id: [],
       name: ['']
@@ -36,6 +39,21 @@ export class CoursesComponent implements OnInit {
       this.courses = data;
     })
 
+  }
+
+  loadStudents(){
+    this.serviceStudent.getStudents().subscribe(data => {
+      this.Students = data;
+    })
+  }
+
+  getCourseName(courseId: number): courses | undefined{
+    return this.courses.find(c => c.id === courseId);
+
+  }
+
+  get name(): any{
+    return this.Forms.get('name'); //TODO precisa modificar par procurar o nome do curso
   }
 
   Activate(togglar: String, datas?: any){
