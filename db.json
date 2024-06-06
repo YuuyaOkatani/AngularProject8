@@ -1,23 +1,32 @@
 {
   "Products": [],
-  "Students": [
-    {
-      "id": 1,
-      "name": "meme",
-      "age": 19,
-      "courseId": 2,
-      "active": true,
-      "period": "Vespertino"
-    }
-  ],
+  "Students": [],
   "courses": [
     {
       "id": 1,
-      "name": "math"
+      "name": "",
+      "image": "C:\\fakepath\\FELV-cat.jpg"
     },
     {
       "id": 2,
-      "name": "portugues"
+      "name": "",
+      "image": "C:\\fakepath\\FELV-cat.jpg"
     }
+  ],
+  "images":[
+    {
+      "id":1, 
+      "name": "https://github.com/YuuyaOkatani/AngularProject8/blob/main/src/assets/geometria.jpg"
+    },
+    {
+      "id":2, 
+      "name": "https://github.com/YuuyaOkatani/AngularProject8/blob/main/src/assets/linguarptbr.jpg"
+    }
+    ,
+    {
+      "id":3, 
+      "name": "https://github.com/YuuyaOkatani/AngularProject8/blob/main/src/assets/socrates.jpg"
+    }
+
   ]
 }

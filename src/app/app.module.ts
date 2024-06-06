@@ -34,7 +34,8 @@ import { HomeComponent } from './home/home.component';
     NgbModule, 
     NgbAlertModule, 
     NgbPopoverModule,
-    HttpClientModule
+    HttpClientModule,
+    
     
     
     

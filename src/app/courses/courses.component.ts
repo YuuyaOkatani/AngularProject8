@@ -5,6 +5,7 @@ import { courses } from '../Courses';
 import { period } from '../Periods';
 import { Students } from '../Students';
 import { StudentsService } from '../service/students.service';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-courses',
   templateUrl: './courses.component.html',
@@ -13,6 +14,9 @@ import { StudentsService } from '../service/students.service';
 export class CoursesComponent implements OnInit {
   courses: courses[] = [];
   Students: Students[] = []; 
+  result: any; 
+
+  url: string = '';
   Forms: FormGroup; 
   Array: any;
   togglar = ''; 
@@ -23,7 +27,8 @@ export class CoursesComponent implements OnInit {
   constructor(private formbuider: FormBuilder,  private serviceCourse : CoursesService, private serviceStudent: StudentsService) {
     this.Forms = formbuider.group({
       id: [],
-      name: ['']
+      name: [''],
+      //image: []
     })
 
    }
@@ -51,6 +56,11 @@ export class CoursesComponent implements OnInit {
     return this.courses.find(c => c.id === courseId);
 
   }
+
+  
+  
+
+  
 
   get name(): any{
     return this.Forms.get('name'); //TODO precisa modificar par procurar o nome do curso
