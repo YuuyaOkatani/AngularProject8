@@ -1,32 +1,72 @@
 {
   "Products": [],
-  "Students": [],
-  "courses": [
+  "Students": [
     {
       "id": 1,
-      "name": "",
-      "image": "C:\\fakepath\\FELV-cat.jpg"
+      "name": "mme",
+      "age": 32,
+      "courseId": 1,
+      "active": false,
+      "period": "Vespertino"
     },
     {
       "id": 2,
-      "name": "",
-      "image": "C:\\fakepath\\FELV-cat.jpg"
-    }
-  ],
-  "images":[
-    {
-      "id":1, 
-      "name": "https://github.com/YuuyaOkatani/AngularProject8/blob/main/src/assets/geometria.jpg"
+      "name": "123",
+      "age": 123,
+      "courseId": 1,
+      "active": true,
+      "period": "Diurno"
     },
     {
-      "id":2, 
-      "name": "https://github.com/YuuyaOkatani/AngularProject8/blob/main/src/assets/linguarptbr.jpg"
-    }
-    ,
+      "id": 3,
+      "name": "joshua",
+      "age": 123,
+      "courseId": 1,
+      "active": true,
+      "period": "Vespertino"
+    },
     {
-      "id":3, 
-      "name": "https://github.com/YuuyaOkatani/AngularProject8/blob/main/src/assets/socrates.jpg"
+      "id": 4,
+      "name": "larry",
+      "age": 123,
+      "courseId": 1,
+      "active": true,
+      "period": "Vespertino"
+    },
+    {
+      "id": 5,
+      "name": "josh",
+      "age": 231,
+      "courseId": 1,
+      "active": true,
+      "period": "Vespertino"
     }
-
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "name": "math",
+      "linkId": {
+        "id": 1,
+        "link": "geometria.jpg"
+      },
+      "workload": 123,
+      "numberStudents": 5
+    }
+  ],
+  "images": [],
+  "links": [
+    {
+      "id": 1,
+      "link": "geometria.jpg"
+    },
+    {
+      "id": 2,
+      "link": "linguaptbr.jpg"
+    },
+    {
+      "id": 3,
+      "link": "socrates.jpg"
+    }
   ]
 }

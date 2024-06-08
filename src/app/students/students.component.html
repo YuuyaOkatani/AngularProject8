@@ -11,13 +11,13 @@
         <form [formGroup]="Forms">
 
             <div>
-                <input id="input1" placeholder="name" formControlName="name">
+                <input id="input1" placeholder="name" formControlName="name" [(ngModel)]="newName">
             </div>
             <div>
                 <input id="input1" type="number" placeholder="age" formControlName="age">
             </div>
             <div>
-                <select class="form-select" formControlName="courseId" [compareWith]="compareCourses">
+                <select class="form-select" formControlName="courseId" [compareWith]="compareCourses" id="select1">
                     <option *ngFor="let course of courses" [ngValue]="course.id">
                         {{course.name}}
                     </option>
@@ -63,7 +63,7 @@
         </div>
         <div id="component4">
             <div>
-                <div id="component5" *ngFor="let data of Array">
+                <div id="component5" *ngFor="let data of Students">
                     <div>
                         ID: {{data.id}} || Nome: {{data.name}}
                     </div>
@@ -85,38 +85,68 @@
     </div>
 
     <div id="component6" [ngClass]="{'transition1' : state == 'togglar3' , 'transition2' : state != 'togglar3'}">
-        <div>
-            <button id="button3" (click)="Activate('togglar')">
-                <i class="bi bi-x-circle">
-
-                </i>
-            </button>
-        </div>
-        <div id="component7">
+        <form [formGroup]="Forms">
             <div>
-                <div>
-                    <p>
-                        Student ID: {{Array2.id}}
-                    </p>
-                </div>
-                <div>
-                    <p>
-                        Name: <input id="input2" [(ngModel)]="newName" [placeholder]="Array2.name" >
-                    </p>
-                </div>
-                <div>
-                    <p>
-                        Age:  <input id="input2" [(ngModel)]="newAge" [placeholder]="Array2.age" type="number" > 
-                    </p>
-                </div>
-                <button type="button" class="btn btn-outline-success" (click)="Activate('togglar5' , Array2)">Salvar ✏💾</button>
-             
-
-                
+                <button id="button3" (click)="Activate('togglar')">
+                    <i class="bi bi-x-circle">
+    
+                    </i>
+                </button>
             </div>
-
-
-        </div>
+            <div id="component7">
+                <div>
+                    <div>
+                        <p>
+                            Student ID: {{Array?.id}}
+                        </p>
+                    </div>
+                    <div>
+                        <p>
+                            Name: <input id="input2" [(ngModel)]="newName" [placeholder]="Array?.name" formControlName="name">
+                        </p>
+                    </div>
+                    <div>
+                        <p>
+                            Age:  <input id="input2" [(ngModel)]="newAge" [placeholder]="Array?.age" type="number" formControlName="age" > 
+                        </p>
+                    </div>
+                    <div>
+                        <p>
+                            Course: 
+                      
+                                <select class="form-select"  [(ngModel)]="newCourseId" formControlName="courseId" [compareWith]="compareCourses" id="select1" >
+                                
+                                    <option *ngFor="let course of courses" [ngValue]="course.id" >
+                                        {{course.name}}
+                                    </option>
+                                
+                                
+                                </select>
+                            
+                        </p>
+                    </div>
+                    <div style="margin-top: 10px; margin-bottom: 10px;">
+                        <span *ngFor="let period of periods">
+                            <input type="radio" [(ngModel)]="newPeriod" formControlName="period" [value]="period" class="ms-2 me-1"/>
+                            <label style="color: rgb(0, 0, 0);" >{{period}}</label>
+                        
+                        
+                        </span>
+                    </div>
+                    
+                    <div>
+                        <input class="form-check-input ms-2" type="checkbox" value="" id="active" formControlName="active" [(ngModel)]="newActive" [placeholder]="Array?.active" />
+                        <label style="color: rgb(0, 0, 0); margin-left: 10px;">Active</label>
+                    </div>
+                    <button type="button" class="btn btn-outline-success" (click)="Activate('togglar5' , Array)">Salvar ✏💾</button>
+                 
+    
+                    
+                </div>
+    
+    
+            </div>
+        </form>
 
     </div>
     
@@ -135,7 +165,7 @@
                   </div>
                 <div>
                     
-                      <button type="button"  class="btn btn-outline-danger" (click)="Activate('togglar6')">Yes, i'm sure. Delete</button>
+                      <button type="button"  class="btn btn-outline-danger" (click)="Activate('togglar6' , Array)">Yes, i'm sure. Delete</button>
                 </div>
                 
     
@@ -146,5 +176,12 @@
         
 
     </div>
+    <div class="alert alert-success alert2" role="alert" id="alert2"  [ngClass]="{'transition1': state2 !== ''  , 'transition2': state2 == ''}">
+        {{state2 === 'added_student' ? 'The course has been added successfully! ' : 
+                   state2 === 'update_student' ? 'The student has been updated successfully! ' :
+                   state2 === 'delete_student'?  'The student has been deleted successfully!' : 
+                   state2 === 'student_exists'? 'The student already exists...': 
+                   state2 === 'incomplete_form' ? 'The form is incomplete': ''}} 
+     </div>
 </body>
 </html>

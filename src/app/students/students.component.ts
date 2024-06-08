@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Students } from '../Students';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StudentsService } from '../service/students.service';
 import { courses } from '../Courses';
 import { CoursesService } from '../service/courses.service';
@@ -15,17 +15,20 @@ export class StudentsComponent implements OnInit{
   Students: Students[] = [];
   courses: courses[] = [];
   periods =  Object.values(period)
-  Array: any[] = [];
-  Array2: any = [];
+  Array: any;
+
   code: Number = 0; 
   newName: String ='';
   newAge: any = '';
-  text1 = 'Added student successfully! 🥳'
-  text2 = 'Updated student successfully! 🥳'
-  text3 = 'Deleted student successfully! 🥳'
+  newCourseId: any = '';
+  newActive: any = '';
+  newPeriod: any = '';
+  
+  state = ''
+  
   
 
-  state = '';
+  state2 = '';
 
   ngOnInit(): void {
     this.loadStudents();
@@ -33,31 +36,28 @@ export class StudentsComponent implements OnInit{
       
   }
 
-  constructor(private formbuilder: FormBuilder, private studentservice: StudentsService , private courseservice: CoursesService){
+  constructor(
+    private formbuilder: FormBuilder, 
+    private studentservice: StudentsService , 
+    private courseservice: CoursesService){
     this.Forms = formbuilder.group({
       
       
-      id: [this.code], 
-      name: [''],
-      age:[],
-      courseId:[],
-      active: [false],
-      period:[]
+      id: [], 
+      name: ['', [Validators.required]],
+      age:[ , [Validators.required]],
+      courseId:[ , [Validators.required]],
+      active: [false , [Validators.required]],
+      period:[ , [Validators.required]]
     })
 
-    this.Forms.valueChanges.subscribe(() => {
-      Object.values(this.Forms).forEach(item => {
-        console.log("saas")
-
-      })
-    })
+   
   }
 
   loadStudents(){
     this.studentservice.getStudents().subscribe(data => {
       this.Students = data;
-      this.Array = [];
-      this.Array.push(...data);
+ 
 
     })
   
@@ -68,6 +68,7 @@ export class StudentsComponent implements OnInit{
     this.courseservice.getCourses().subscribe( data => {
        this.courses = data; 
        // agora é so terminar o resto
+       
 
     })
   }
@@ -81,61 +82,115 @@ export class StudentsComponent implements OnInit{
 
   }
 
-  get course(): any {
-    return this.Forms.get('courseId');
+
+  Message(message: string){
+    this.state2 = message
+    console.log(this.state2)
+            setTimeout(() => {
+           
+            this.state2 = ''; 
+      
+      
+          }, 3000);
+
+
   }
 
-  get name(): any {
-    return this.Forms.get('name');
+  check(){
+    if(this.Forms.valid){
+      this.Students.forEach(student =>{
+        if(student.name.trim().toLowerCase() === this.newName.trim().toLowerCase()){
+          this.Message('student_exists')
+
+        }
+      })
+      if(this.state2 == '' ){
+        this.studentservice.addStudents(this.Forms.value).subscribe({
+          next: data => {
+            this.Students.push(data)
+            this.loadStudents()
+            this.Message('added_student')
+            this.courseservice.getGroupCoursesStudents(Number(data.courseId)).subscribe({
+              next: data2 => {
+                console.log(data2)
+                
+                this.courseservice.getCourse(Number(data.courseId)).subscribe(data3 => {
+                  console.log(data3)
+                  data3.numberStudents = data2.length;
+
+                  this.courseservice.updateCourses(data3).subscribe(data4 => {   
+                   console.log(data4.numberStudents);
+                   this.Forms.reset()
+                  });
+
+                  
+                  
+                })
+                
+        
+              }
+              
+            })
+            
+          }
+
+        })
+        
+
+      }
+    }
+    else{
+      this.Message('incomplete_form')
+    }
   }
 
-  get age(): any {
-    return this.Forms.get('age');
+  QueryArray(datas: any){
+    this.Students.forEach(data => {
+      if(data.id === datas.id){
+        this.Array = data;
+   
+      }
+    });
   }
-
-  get period(): any {
-    return this.Forms.get('period');
-  }
-
+  
  
 
   Activate(states: String, datas?: any){
     switch(states){
       case "togglar":
         this.state = 'togglar'; 
-        console.log(this.Array)
+       
       
       break; 
 
       case "togglar2":
         this.state = 'togglar2'
-        this.code = this.Array.length + 1 ;
+        this.check()
+     
+       
+        
 
         
 
-        this.studentservice.addStudents(this.Forms.value).subscribe({
-          next: data => {
-            this.Students.push(data)
-     
-            this.loadStudents()
-          }
-
-        })
+    
+        
+      
 
       break; 
 
       case "togglar3":
         this.state = 'togglar3'; 
-        console.log("Editar" , datas);
+        this.QueryArray(datas)
+   
         
-        this.Array2 = datas;
+ 
 
       break;
 
       case "togglar4":
         this.state = 'togglar4'
-        this.Array2 = datas
-        console.log("Apagar" , datas)
+        this.QueryArray(datas)
+
       break;
 
       case "togglar5":
@@ -143,27 +198,26 @@ export class StudentsComponent implements OnInit{
 
 
         console.log()
-        this.Array.forEach(element => {
-          if(element.id == datas.id){
-            element.name = this.newName
-            element.age = this.newAge
-            this.studentservice.updateStudents(element).subscribe({
-              next: data => 
-                {
-                  data.name = element.name
+        this.Array.name = (this.newName != ''  ? this.newName : this.Array.name)
+        this.Array.age = (this.newAge != '' ? this.newAge : this.Array.age);
+        this.Array.courseId = (this.newCourseId!= ''? this.newCourseId : this.Array.courseId);
+        this.Array.active = (this.newActive != this.Array.active ? this.newActive : this.Array.active);
+        this.Array.period = (this.newPeriod!= ''? this.newPeriod : this.Array.period);
+
+        console.log(this.Array)
+        this.studentservice.updateStudents(this.Array).subscribe({
+          next: data => 
+            {
             
-                  this.Array2.name = '';
-                  this.Array2.age = '';
-                
+     
+              this.Message('update_student')
+            
 
-                  this.loadStudents()
-              }
-
-               
-              
-            })
-      
+              this.loadStudents()
           }
+
+           
+          
         })
 
         
@@ -175,19 +229,14 @@ export class StudentsComponent implements OnInit{
       case "togglar6":
       
         
+      
+      this.studentservice.deleteStudents(this.Array).subscribe({
+        next: () => { 
+          this.loadStudents()
+          this.Message('delete_student')
         
-        this.Array.forEach(element => {
-          if(element.id === this.Array2.id){
-            console.log(element.id);
-           
-            this.studentservice.deleteStudents(element).subscribe({
-              next: () =>  this.loadStudents()
-            })
-        
-        
-          }
-        })
-  
+        }
+      })
         this.state = 'togglar';
         
       break;

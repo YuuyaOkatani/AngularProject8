@@ -87,12 +87,12 @@
 
 #component7{
     background-color: #9bf7f7;
-    height: 300px;
-    width: 520px;
+    height: 400px;
+    width: 580px;
     display: flex;
     position: fixed;
     border-radius: 10px;
-    margin-top: 120px;
+   
     padding: 10px;
     
 
@@ -217,4 +217,24 @@
 #alert1{
     margin-top: 100px;
     position: relative;
+}
+
+#alert2{
+    width: 800px;
+    position: fixed;
+    top: 100%; 
+
+    display: flex;
+}
+
+#select1{
+    width: 400px; 
+    height: 40px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+.card1{
+    margin-left: 10px;
 }

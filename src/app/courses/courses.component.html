@@ -9,15 +9,25 @@
 <body class="component1">
     <div id="component2">
         <div>
-            <form [formGroup]="Forms">
+            <form [formGroup]="Forms" >
                 <div>
-                    <input id="input1" placeholder="name" formControlName="name">
+                    <input id="input1" placeholder="name" formControlName="name" [(ngModel)]="newName">
+                </div>
+                <div>
+                    <input id="input1" placeholder="workload" formControlName="workload" type="number" >
                 </div>
                 <!--
                     <div>
                     <input id="input1" type="image"  placeholder="Image" formControlName="image">
                 </div>
                 -->
+                <div>
+                    <select class="form-select" formControlName="linkId" [compareWith]="comparewith2" id="select1">
+                        <option *ngFor="let link of links" [ngValue]="link">
+                            {{link.link}}
+                        </option>
+                    </select>
+                </div>
             </form>
             <div>
                 <div>
@@ -59,30 +69,48 @@
     </div>
 
     <div id="component3" [ngClass]="{'transition1': togglar == 'togglar3', 'transition2': togglar != 'togglar3'}">
-        <div>
-            <button id="button3" (click)="Activate('togglar')">
-                <i class="bi bi-x-circle">
-                    </i>
-            </button>
-        </div>
-        <div id="component7">
+        <form [formGroup]="Forms">
             <div>
+                <button id="button3" (click)="Activate('togglar')">
+                    <i class="bi bi-x-circle">
+                        </i>
+                </button>
+            </div>
+            <div id="component7">
                 <div>
-                    <p>
-                        Course ID: {{Array?.id}}
-                    </p>
-
-                </div>
-                <div>
-                    <p>
-                        Name: <input id="input2" [(ngModel)]="newName" [placeholder]="Array?.name" >
-                    </p>
-                </div>
-                <div>
-                    <button type="button" class="btn btn-outline-success" (click)="Activate('togglar5', Array)">Salvar ✏💾</button>
+                    <div>
+                        <p>
+                            Course ID: {{Array?.id}}
+                        </p>
+    
+                    </div>
+                    <div>
+                        <p>
+                            Name: <input id="input2" [(ngModel)]="newName" [placeholder]="Array?.name" formControlName="name">
+                        </p>
+                    </div>
+                    <div>
+                        <p>
+                            Workload: <input id="input1" [placeholder]="Array?.workload" formControlName="workload" type="number" >
+                        </p>
+                    </div>
+                 
+                    <div>
+                        <p> Image link: 
+                            <select class="form-select" formControlName="linkId" [compareWith]="comparewith2" id="select1"  >
+                                <option *ngFor="let link of links" [ngValue]="link">
+                                    {{link.link}}
+                                </option>
+                            </select>
+                        </p>
+                        
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-outline-success" (click)="Activate('togglar5', Array)">Save ✏💾</button>
+                    </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
 
     <div id="component3" [ngClass]="{'transition1': togglar == 'togglar4', 'transition2': togglar != 'togglar4'}">
@@ -103,6 +131,15 @@
         </div>
         
     </div>
+   
+        <div class="alert alert-success alert2" role="alert" id="alert2"  [ngClass]="{'transition1': state !== ''  , 'transition2': state == ''}">
+             {{state === 'added_course' ? 'The course has been added successfully! ' : 
+                        state === 'update_course' ? 'The course has been updated successfully! ' :
+                        state === 'delete_course'?  'The course has been deleted successfully' : 
+                        state === 'course_exists'? 'The course already exists...': 
+                        state === 'incomplete_form' ? 'The form is incomplete': ''}} 
+          </div>
+   
 
 
 

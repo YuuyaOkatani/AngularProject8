@@ -7,14 +7,18 @@
     <title>Document</title>
 </head>
 <body class="component1">
-    <div class="card" style="width: 18rem;">
-        <img src = "../../assets/geometria.jpg" class="card-img-top" alt="matematica">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+    <div *ngFor="let course of courses">
+      <div class="card" style="width: 18rem; margin-left: 10px; height: 400px;" >
+        <img [src]="link + course.linkId.link" class="card-img-top" style="height: 200px;" [alt]="course.name"> <!--//TODO needed to put object instead of id -->
+        <div class="card-body" >
+          <h5 class="card-title"></h5>
+          <p class="card-text">Course name: {{course.name}}</p>
+          <p class="card-text">Workload: {{course.workload}} hours</p>
+          <p class="card-text">Signed students: {{course.numberStudents}}</p>
+          <a href="#" class="btn btn-primary">Start course</a>
         </div>
       </div>
+    </div>
 
     
 </body>
