@@ -1,6 +1,6 @@
 export enum period{
-    Morning = 'Diurno',
-    Afternoon = 'Vespertino',
-    Evening = 'Noturno'
+    Morning = 'Morning',
+    Afternoon = 'Afternoon',
+    Evening = 'Evening'
 
 }

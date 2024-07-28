@@ -97,6 +97,7 @@
     margin-top: 120px;
 
 
+
     top: 100%;
 
 }
@@ -127,7 +128,7 @@
 }
 .transition2{
     transition: 1s ease;
-    transform: translateY(1000px);
+    transform: translateY(120%);
 
 
     

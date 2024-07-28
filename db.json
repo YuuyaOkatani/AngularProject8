@@ -1,5 +1,20 @@
 {
-  "Products": [],
+  "Products": [
+    {
+      "id": 1,
+      "name": "13123",
+      "description": "3213213",
+      "price": 123123,
+      "quantity": 312312
+    },
+    {
+      "id": 2,
+      "name": "saas",
+      "description": "sassas",
+      "price": 31231,
+      "quantity": 12313
+    }
+  ],
   "Students": [
     {
       "id": 1,
@@ -52,6 +67,16 @@
       },
       "workload": 123,
       "numberStudents": 5
+    },
+    {
+      "id": 2,
+      "name": "as",
+      "linkId": {
+        "id": 2,
+        "link": "linguaptbr.jpg"
+      },
+      "workload": 213213,
+      "numberStudents": 0
     }
   ],
   "images": [],
